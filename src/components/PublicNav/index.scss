@@ -1,0 +1,42 @@
+.ant-menu{
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.ant-menu-overflow{
+
+    margin: 0 auto;
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0.3);
+    border-bottom:0;
+    height: 64px;
+    line-height: 64px;
+    
+}
+.ant-menu-horizontal:not(.ant-menu-dark )>.ant-menu-item-active{
+    color: orange!important;
+
+}
+
+.ant-menu-item-selected{
+    color: orange!important;
+    font-size: 28px!important;
+    // border: 1px solid blue!important;
+}
+
+// 去除::伪元素
+.ant-menu-item-selected::after{
+    border: none!important;
+}
+.ant-menu-item-active::after{
+    border: none!important;
+    color: orange!important;
+
+}
+.ant-menu-overflow-item{
+    margin-right: 35px;
+    font-size: 22px;
+    color: white;
+    border: none!important;
+}

@@ -1,0 +1,90 @@
+.hottst{
+    position: absolute;
+    left: 0;
+    top:20%;
+    width:21%;
+    margin-left: 10px;
+    box-shadow: 10px 10px 10px 10px #dedede;
+    .card{
+        background: white;
+        position: relative;
+        padding: 10px!important;
+        .top{
+            text-align: center;
+            font-size: 18px;
+           h3{
+            color: rgb(255, 106, 0);
+           }
+           .anticon{
+            color: red;
+           }
+        }
+        .hotIcon{
+            font-size: 20px;
+            .first{
+                z-index: 5;
+                position: absolute;
+                top:120px;
+                left: 37%;
+                color: red;
+            }
+            .second{
+                z-index: 5;
+                position: absolute;
+                top:240px;
+                left: 37%;
+                color: rgb(247, 82, 82);
+            }
+            .third{
+                z-index: 5;
+                position: absolute;
+                top:340px;
+                left: 37%;
+                color: rgb(221, 128, 128);
+            }
+           
+        }
+        // .ant-list{
+        //     margin-top: -15px;
+        // }
+            padding: 0!important;
+            display: block;
+            .left{
+                padding-top: 10px;
+                float: left;
+                img{
+                    width: 100px;
+                    height: 90px;
+                    border-radius: 15%;
+                }
+            }
+            .right{
+                // float: right;
+                float: left;
+                width:180px;
+                height: 80%;
+                font-size: 11px;
+                .title{
+                    padding-top: 5px;
+                    a{
+                        color: black!important;
+                    }
+                    a:hover{
+                        color: red!important;
+                    }
+                }
+                .info{
+                    color: rgba(95, 88, 79, 0.811);
+                    margin-left: 15px;
+                    .hot{
+                        // margin-right: 5px;
+                        margin-left: 30px;
+                    }
+                }
+            }
+        }
+    .ant-list-item{
+        justify-content: space-between;
+        padding: 0;
+    }
+}

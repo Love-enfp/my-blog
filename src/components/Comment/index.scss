@@ -1,0 +1,196 @@
+.commentAll{
+    .commentMenu {
+        position: relative;
+        .help{
+            position: absolute;
+            right: 5%;
+            top: 2%;
+            display: inline-block;
+            font-weight: 700;
+            color: rgb(113, 120, 127);
+            .icon{
+                color: orange;
+                font-weight: 700;
+            }
+            span{
+                color: red;
+            }
+        }
+        .nick{
+            span{
+                color: orange;
+                font-size: 25px;
+            }
+            margin-bottom: 10px;
+        }
+        h1{
+            margin-top: 20px;
+            color: red;
+        }
+        .replyObject{
+            background: rgb(245, 233, 233);
+            font-size: 20px;
+            margin-bottom: 15px;
+            .content{
+                padding-left: 60px;
+            }
+        }
+        .ant-form{
+            margin-top: 40px;
+            .userInfo{
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+                height: 100px;
+                
+                .img{
+                    height: 80px!important;
+                    width: 80px;
+                    border-radius: 30%;
+                }
+            }
+            .content{
+                width: 100%;
+            }
+            .submit{
+                text-align: center;
+            }
+            
+        }
+    }
+    .commentArea{
+        .commentOne{
+            display: flex;
+            // height: 100px;让内容撑开
+            padding-left: 20px;
+            clear: both;
+            .left{
+                // float: left;
+                img{
+                    border-radius: 30%;
+                }
+           }
+            .right{
+                    margin-left: 10px;
+                    // float: left;
+                    .info{
+                        .userName{
+                            margin-right: 10px;
+                            color: red;
+                            font-weight: 700;
+                        }
+                        
+                    }
+                    .content{
+                        p{
+                            color: rgb(112, 101, 101);
+                            font-weight: 300;
+                            margin-top: 5px;
+                        }
+                        p:hover{
+                            color: red;
+                            font-weight: 300;
+                        }
+                        .ant-form {
+                            border: 1px solid rgb(230, 217, 217);
+                            padding: 5px;
+                            .userInfo{
+                                display: flex;
+                            }
+                        }
+                    }
+            }
+        }
+      
+       .commentReply{
+            padding-left: 80px;
+            
+            .reply{
+                display: flex;
+                background: rgb(239, 239, 242);
+                
+                // border-radius: 10%;
+                .left{
+                    // float: left;
+                    padding-top: 12px;
+                    img{
+                        border-radius: 30%;
+                    }
+                }
+                .right{
+                        margin-left: 10px;
+                        // float: left;
+                        .info{
+                            .userName{
+                                margin-right: 10px;
+                                color: red;
+                                font-weight: 700;
+                                .replyTitle{
+                                    color: blue;
+                                    margin-left: 5px;
+                                    margin-right: 5px;
+                                }
+                            }
+                            
+                        }
+                        .content{
+                            p{
+                                color: rgb(112, 101, 101);
+                                font-weight: 300;
+                                margin-top: 5px;
+                            }
+                            p:hover{
+                                color: red;
+                                font-weight: 700;
+                            }
+                        }
+                }
+            }
+            .thirdReply{
+                .endReply{
+                    display: flex;
+                     background: rgb(239, 239, 242);
+                     .left{
+                        // float: left;
+                        padding-top: 12px;
+                        img{
+                            border-radius: 30%;
+                        }
+                    }
+                    .right{
+                        margin-left: 10px;
+                        // float: left;
+                        .info{
+                            .userName{
+                                margin-right: 10px;
+                                color: red;
+                                font-weight: 700;
+                                .replyTitle{
+                                    color: blue;
+                                    margin-left: 5px;
+                                    margin-right: 5px;
+                                }
+
+                            }
+                            
+                        }
+                        .content{
+                            p{
+                                color: rgb(112, 101, 101);
+                                font-weight: 300;
+                                margin-top: 5px;
+                            }
+                            p:hover{
+                                color: red;
+                                font-weight: 700;
+                            }
+                        }
+                     }
+                }
+                
+             }
+            
+       }
+        
+    }
+}

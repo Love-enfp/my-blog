@@ -1,0 +1,76 @@
+.userInfoSlider{
+    z-index: 10;
+    // position: absolute;
+    // top: 10%;
+    // right: 5%;
+    box-shadow: 10px 10px 10px 10px #dedede;
+    .userSlider{
+        .userImage {
+            text-align: center;
+            img{
+                
+                height: 130px;
+                width: 130px;
+                border-radius: 50%;
+            }
+             /* 1、设置动画名称 */
+             animation-name: imgrotate;
+             /* 2、动画持续时间 */
+             animation-duration: 3.8s;
+             /* 3、动画执行速度 */
+             animation-timing-function: linear;
+             /* 5、设置动画播放次数 */
+             animation-iteration-count: infinite;
+            @keyframes imgrotate{
+                0% {transform: rotate(0deg);}
+                100% {transform: rotate(360deg);}
+            }
+        }   
+        .info{
+           .username{
+            font-size: 25px;
+            font-family:"Times New Roman";
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 10px;
+           }
+           .quote{
+            text-align: center;
+            color: orange;
+            font-size: 12px;
+           }
+           .dataDetail{
+            font-size: 16px;
+            display: flex;
+            justify-content: space-around;
+                p{
+                    
+                    text-align: center;
+                }
+                .num{
+                    color: rgb(164, 36, 36);
+                    font-weight: 700;
+                }
+           }
+        }
+        .more{
+           text-align: center;
+           .myActive{
+            background: orange !important;
+            color: white !important;
+             }
+           a{
+               background: blue;
+                 display:inline-block;
+                height: 50px;
+                line-height: 50px;
+                width: 100px;
+                border-radius: 30%;
+                color: white;
+                font-size: 18px;
+           }
+           
+        }
+        
+    }
+  }

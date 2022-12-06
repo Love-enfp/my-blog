@@ -1,0 +1,68 @@
+.allSorts{
+    .ant-layout-header{
+        position: relative;
+        background-image: url('../../assets/images/nextheaderbgc3.jpg');
+        background-size: 100% 100%;
+        height: 500px;
+    }
+
+    .ant-layout-content{
+        position: relative;
+        background: rgb(201, 234, 234);
+        padding-top: 20px;
+        padding-left: 5%;
+        padding-bottom: 100px;
+        // width: 90%;
+        padding-right: 30%;
+        .showLabel{
+            .ant-card-body{
+                p{
+                    font-size: 35px;
+                    // color: orange;
+                }
+                .labelsList{
+                    // height: 600px;
+                    //  overflow:scroll;
+                    // display: flex;
+                    .label{
+                        float: left;
+                        width: 220px;
+                        height: 100px;
+                        line-height: 100px;
+                        text-align: center;
+                        font-size: 28px;
+                        font-weight: 700;
+                        // border: 1px solid red;
+                        border: 1px solid gainsboro;
+                        .num{
+                            margin-left: 15px;
+                        }
+                    }
+                    // .label:hover{
+                    //     color: red;
+    
+                    // }
+                }
+            }
+        }
+        .articles{
+            .ant-card{
+                margin: 0 auto;
+            }
+        }
+        .rightMenu{
+            .slidertight2{
+                margin-top: 7px;
+                .hottst{
+                    width: 319px;
+                    margin-left: 0;
+                    margin-top: 350px;
+                }
+            }
+            
+        }
+    }
+    .footer{
+        margin-top: 0!important;
+    }
+}

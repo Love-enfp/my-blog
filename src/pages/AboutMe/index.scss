@@ -1,0 +1,94 @@
+.aboutme{
+    .ant-layout{
+        .ant-layout-content{
+            width: 70%;
+            // border: 1px solid red;
+            margin: 0 auto;
+            .bulletScreen{
+                background-image: url('../../assets/images/bulletbgc.jpg');
+                background-size: 100% 100%;
+                .screen{
+                    margin: 0 auto;
+                    // border: 1px solid orange;
+                    width: 60%;
+                    height: 300px;
+                }
+                .bullet{
+                    .title{
+                        color: orange;
+                        font-size: 22px;
+                    }
+                    input{
+                        height: 32px;
+                        width: 250px;
+                    }
+                    text-align: center;
+                }
+            }
+            .userInfo{
+                height: 400px;
+                margin-top: 50px;
+                h1{
+                    font-size: 30px;
+                    span{
+                        color: orange;
+                        margin-right: 5px;
+                    }
+                }
+                .left{
+                    float: left;
+                    text-align: center;
+                    img{
+                        width: 185px;
+                        height: 185px;
+                        border-radius: 50%;
+                    }
+                    .title{
+                        margin-top: 30px;
+                        color: orange;
+                    }
+                }
+                .right{
+                    float: left;
+                    margin-left: 50px;
+                    ul{
+                        list-style: none;
+                        font-size: 18px;
+                        li{
+                            margin-top: 15px;
+                        }
+                    }
+                }
+            }
+            .mylog{
+                h1{
+                    font-size: 30px;
+                    span{
+                        color: orange;
+                        margin-right: 5px;
+                    }
+                }
+                p{
+                    font-size: 20px;
+                }
+            }
+            .goal{
+                margin-top: 50px;
+                h1{
+                    font-size: 30px;
+                    span{
+                        color: orange;
+                        margin-right: 5px;
+                    }
+                }
+                .content{
+                    padding-left: 30px;
+                    .one{
+                        font-size: 20px;
+                    }
+                }
+                
+            }
+        }
+    }
+}

@@ -1,0 +1,202 @@
+.home{
+    .ant-layout-header{
+        position: relative;
+        background-image: url('../../assets/images/headerbgc.jpg');
+        background-size: 100% 100%;
+        height: 800px;
+            .userImage {
+                position: absolute;
+                left: 50%;
+                top: 25%;
+                transform: translate(-50%,-50%);
+                img{
+                    height: 150px;
+                    width: 160px;
+                    border-radius: 50%;
+                }
+            }    
+            .title{
+                position: absolute;
+                left: 50%;
+                top: 55%;
+                transform: translate(-50%,-50%);
+                color: white;
+                font-size: 30px;
+                font-weight: normal;
+                border-bottom:solid white 2px;
+                
+            }
+            .guide{
+                .icon{
+                    cursor: pointer;
+                    color: rgb(143, 153, 227);
+                     font-size: 35px;
+                }
+                position: absolute;
+                left: 90%;  
+                top: 60%;
+                width: 30px;
+                /* 1、设置动画名称 */
+                animation-name: move;
+                /* 2、动画持续时间 */
+                animation-duration: 2s;
+                /* 3、动画执行速度 */
+                animation-timing-function: linear;
+                /* 5、设置动画播放次数 */
+                animation-iteration-count: infinite;
+                /* 6、设置动画是否反向播放 */
+                animation-direction: alternate;
+                // transform: translateY(10px)
+                @keyframes move{
+                    0% {
+                        transform: translateY(0);
+                        opacity: 100%;
+                        
+                    }
+                    50% {
+                        transform: translateY(30px);
+                        opacity: 70%;
+                    }
+                    100% {
+                        transform: translateY(60px);
+                        opacity: 10%;
+                    }
+                } 
+            }
+    }
+    .mainContent{
+        background-image: url('../../assets/images/contentbgc3.jpg');
+        background-repeat: no-repeat;
+        background-size:100% 100%;
+        .ant-layout-content{
+            position: relative;
+            // .ant-card-body{
+            //     padding-top: 0;
+            //     .ant-card{
+            //         padding-top: 15px;
+            //     }
+            // }
+           .articleRecommend{
+                 margin:  0 auto;
+                 .recommendNew{
+                    // background: white;
+                    margin-bottom: 20px;
+                    padding-left: 45%;
+                   
+                    color: black;
+                    font-size: 30px;
+                    .icon{
+                        color: red;
+                    }
+                 }
+                 .swipper{
+                    .slick-prev:before{
+                        color: rgb(255, 0, 0)!important;
+                    }
+                    .slick-next:before{
+                        color: rgb(255, 0, 0)!important;
+                    }
+                    .img{
+                        position: relative;
+                        img{
+                            width: 260px;
+                            height: 200px;
+                            // border: 2px solid  rgb(7, 15, 88);
+                            border-radius: 5%;
+                        }
+                        .text:hover{
+                            color: rgb(255, 128, 0)!important;
+                            font-weight: 700;
+                            font-size: 17px;
+                        }
+                        .text{
+                            display: block;
+                            position: absolute;
+                            left: 0;
+                            margin-left: 17px;
+                            bottom: 0;
+                            width: 60%;
+                            height: 40px;
+                            background-color: black;
+                            opacity: 50%;
+                            color: white;
+                            font-size: 16px;
+                            border: 1px solid #000;
+                            text-align: center;
+                            line-height: 40px;
+                            border-radius: 5%;
+                        }
+                    }
+                 }
+                 background-color: rgb(247, 240, 240);
+           }
+           .articleNew{
+            
+                margin:  0 auto;
+                /*  内部滚动条样式 ----- begin*/
+           .ant-card-body::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width : 6px;  /*高宽分别对应横竖滚动条的尺寸*/
+            height: 1px;
+            }
+            /*滚动条里面小方块*/
+            .ant-card-body::-webkit-scrollbar-thumb {
+                /*滚动条里面小方块*/
+                border-radius   : 5px;
+                background-color: #a8a6c5;
+                background-image: -webkit-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.3) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0.3) 75%,
+                transparent 75%,
+                transparent
+                );
+            }
+            /*滚动条里面小方块*/
+            /*.acrossTimeLine-body-box ::-webkit-scrollbar-thumb {
+                border-radius: 3px;
+                box-shadow   : inset 0 0 4px rgba(100, 169, 169, 0.48);
+                background   : #AAE9E5;
+            }*/
+            /*滚动条里面轨道*/
+            .ant-card-body::-webkit-scrollbar-track {
+                border-radius: 6px;
+                background   :#04bac0;
+            }
+            /*  内部滚动条样式 ----- end*/
+    
+           }
+           
+           
+    
+          
+          .timeLine{
+            position: absolute;
+            left: 0%;
+            top: 10%;
+            width: 23%;
+            p{
+                font-size: 35px;
+                text-align: center;
+                color: rgb(175, 7, 144);
+                font-weight: 700;
+            }
+            .ant-timeline-item-content{
+                font-size: 20px;
+                font-weight: 600;
+                color: rgb(13, 8, 70);
+            }
+            
+          }
+           
+        }
+    }
+   
+        
+
+        
+    
+}

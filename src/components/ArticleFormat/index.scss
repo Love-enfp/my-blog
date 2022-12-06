@@ -1,0 +1,123 @@
+.articles{
+    // height: 1500px;
+    // overflow: hidden;
+    // overflow: scroll;
+    
+    .title{
+        padding-left: 45%;
+        color: black;
+        font-size: 30px;
+        .icon{
+            color: red;
+        }
+    }
+    .sorts{
+        padding-bottom: 10px;
+        a{
+            margin-right: 20px;
+            
+        }
+    }
+    .ant-card{
+        height: 450px!important;
+        .ant-card-body{
+            // height: 100%;
+            .artileContent{
+                // height: 100%;
+                float: left;
+                width: 60%;
+                .content{
+                    display: block;
+                    height:180px!important;
+                    // overflow: scroll;
+                    font-size: 12px;
+                    overflow: hidden;
+                }
+                .readMore{
+                    margin: 0 auto;
+                    margin-top: 5px;
+                    // display: inline-block;
+                    text-align: center;
+                    width: 100px;
+                    height: 40px;
+                    line-height: 40px;
+                    background:red;
+                    border-radius: 30px;
+                    box-shadow: 0 2px 2px 0 rgb(244 67 54 / 14%), 0 3px 1px -2px rgb(244 67 54 / 20%), 0 1px 5px 0 rgb(244 67 54 / 12%);
+                    a{
+                        color: white;
+                    }
+                    a:hover{
+                        color: orange;
+                    }
+                }
+                // span{}
+                .articleDeatil{
+                    display: flex;
+                    justify-content: space-around;
+                    margin-top:1px ;
+                    width: 80%;
+                    
+                    img{
+                        width: 45px;
+                        height: 45px;
+                        border-radius: 50%;
+                    }
+                    .view{
+                        font-size: 17px;
+                        line-height: 45px;
+                        span{
+                            color:rgb(255, 85, 0)
+                        }
+                    }
+                    
+                    .data{
+                        line-height: 45px;
+                    }
+                }
+            }
+        }
+    }
+    
+    .contentImg{
+        float: left;
+        img{
+            height: 250px;
+            width: 260px;
+        }
+    }
+}
+/*  内部滚动条样式 ----- begin*/
+// .articles::-webkit-scrollbar {
+//     /*滚动条整体样式*/
+//     width : 6px;  /*高宽分别对应横竖滚动条的尺寸*/
+//     height: 1px;
+// }
+// /*滚动条里面小方块*/
+// .articles::-webkit-scrollbar-thumb {
+//     /*滚动条里面小方块*/
+//     border-radius   : 5px;
+//     background-color: #a8a6c5;
+//     background-image: -webkit-linear-gradient(
+//     45deg,
+//     rgba(255, 255, 255, 0.3) 25%,
+//     transparent 25%,
+//     transparent 50%,
+//     rgba(255, 255, 255, 0.3) 50%,
+//     rgba(255, 255, 255, 0.3) 75%,
+//     transparent 75%,
+//     transparent
+//     );
+// }
+// /*滚动条里面小方块*/
+// /*.acrossTimeLine-body-box ::-webkit-scrollbar-thumb {
+//     border-radius: 3px;
+//     box-shadow   : inset 0 0 4px rgba(100, 169, 169, 0.48);
+//     background   : #AAE9E5;
+// }*/
+// /*滚动条里面轨道*/
+// .articles::-webkit-scrollbar-track {
+//     border-radius: 6px;
+//     background   :#04bac0;
+// }
+/*  内部滚动条样式 ----- end*/
