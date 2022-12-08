@@ -18,7 +18,7 @@ const { Header,  Content } = Layout;
 export default function Sort() {
   
   const echartDom=useRef(null)
-    // 存储获得的标签状态，最初的发送请求返回的状态
+    // 存储获得的标签状态，最初的发送请求返回状态
     const [sort,setSort]=useState([])
     // keys存储键值，比如['詹姆斯'，'库里',....]
     const [keys,setKeys]=useState([])
