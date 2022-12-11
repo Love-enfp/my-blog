@@ -61,6 +61,8 @@
   },
   "devDependencies": {
     "nodemailer": "^6.8.0",
+    "postcss-loader": "^7.0.2",
+    "postcss-px-to-viewport": "^1.1.1",
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.55.0"
   }
