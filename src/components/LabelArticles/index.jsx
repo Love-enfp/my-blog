@@ -10,6 +10,7 @@ export default function LabelArticles() {
     // useLocation拿到传递过来的参数
     const { state } = useLocation()
     const {item,label}=state
+    console.log(item,label);
     // item为：詹姆斯，欧文，湖人。。。。。,label为{id: 1, blog_id: 1, name: '欧文'}
 
     // 2.------获得标签对应的标签数据

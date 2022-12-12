@@ -62,22 +62,27 @@ const [replyInfo,setReplyInfo]=useState({})
         method:'get',
         url:'https://api.usuuu.com/qq/'+event.target.value
     }).then(res=>{
+        console.log(res.data);
         if(res.data.code===200)
         {
-
-            // 更新qq相关信息
-            setqqUserInfo(res.data.data)
-            // 自动填充邮箱和昵称
-            form.current.setFieldsValue({
-                email:res.data.data.qq+'@qq.com',
-                nick:res.data.data.name
-            })
-            // 自动填充头像
-            setqqImage(res.data.data.avatar)
+            if(res.data.data.name==' ')
+            {
+                message.error("请重新输入")
+            }
+            else{
+                // 更新qq相关信息
+                setqqUserInfo(res.data.data)
+                // 自动填充邮箱和昵称
+                form.current.setFieldsValue({
+                    email:res.data.data.qq+'@qq.com',
+                    nick:res.data.data.name
+                })
+                // 自动填充头像
+                setqqImage(res.data.data.avatar)
+            }
+            
         }
-        else{
-                message.error('qq号输入错误！请重试')
-        }
+       
     })
   }
 
@@ -187,8 +192,8 @@ const [replyInfo,setReplyInfo]=useState({})
                 console.log(allArticleComment);
                 params={
                     id:allArticleComment.length===0 ? 0 : (getMaxId(allArticleComment)+1),
-                    nick:nick? nick:qqUserInfo.name,
-                    email:qqUserInfo.qq+'@qq.com',
+                    nick:qqUserInfo.name?qqUserInfo.name:nick,
+                    email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                     content:maincontent,
                     avatar:qqImage,
                     blog_id:articleId,
@@ -202,8 +207,8 @@ const [replyInfo,setReplyInfo]=useState({})
             else if(flag==0&&replyid!==-1){
                 params={
                     id:allArticleComment.length===0 ? 0 : (getMaxId(allArticleComment)+1),
-                    nick:nick? nick:qqUserInfo.name,
-                    email:qqUserInfo.qq+'@qq.com',
+                    nick:qqUserInfo.name?qqUserInfo.name:nick,
+                    email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                     content:maincontent,
                     avatar:qqImage,
                     blog_id:0,//注意，论文文章若为0说明是二级评论
@@ -218,8 +223,8 @@ const [replyInfo,setReplyInfo]=useState({})
             {
                 params={
                     id:allArticleComment.length===0 ? 0 : (getMaxId(allArticleComment)+1),
-                    nick:nick? nick:qqUserInfo.name,
-                    email:qqUserInfo.qq+'@qq.com',
+                    nick:qqUserInfo.name?qqUserInfo.name:nick,
+                    email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                     content:maincontent,
                     avatar:qqImage,
                     blog_id:0,//注意，论文文章若为0说明是二级评论
@@ -243,7 +248,7 @@ const [replyInfo,setReplyInfo]=useState({})
                     // console.log(res.data);
                 })
             }
-            // console.log('提交的评论信息是',params);
+            console.log('提交的评论信息是',params);
             // console.log(getMaxId(allArticleComment));
             api.submitComment(params).then(res=>{
                 if(res.data.status===200)
@@ -258,6 +263,7 @@ const [replyInfo,setReplyInfo]=useState({})
                         content:'',
                         avatar:''
                     })
+                    emotor.current.clean();
                     setqqImage('https://pics5.baidu.com/feed/960a304e251f95cab3693a1b1509a238660952a0.jpeg?token=5d39e841d225ed2520ab17eaf7cea79a')
                     // 关闭二级回复表单
                     setIsReply(false)
@@ -305,7 +311,8 @@ const [replyInfo,setReplyInfo]=useState({})
             <div className="help">
                 <p>您可以选择两种方式进行评论哟：</p>
                 <p><StarOutlined className='icon'/>1.直接输入<span>qq号</span> ，获得昵称、邮箱、头像</p>
-                <p><StarOutlined className='icon'/>2.忽略qq,直接输入自定义的<span>昵称</span>和真实的<span>邮箱</span></p>
+                <p><StarOutlined className='icon'/>2.忽略qq,直接输入自定义的<span>昵称</span>和真实的<span>qq邮箱</span></p>
+                <p><StarOutlined className='icon'/>注意：评论回复将通过<span>qq邮箱</span>提醒您哟</p>
             </div>
             <div className="nick">
                 {
@@ -433,7 +440,15 @@ const [replyInfo,setReplyInfo]=useState({})
                                     </div>
                                     <div className="right">
                                         <div className="info">
-                                            <span className='userName'>{item.nick}</span>
+                                            <span className='userName'>
+                                                 <i>
+                                                {
+                                                    item.nick==="钟爱enfp女孩"?
+                                                    '☆博主☆ '
+                                                    :''
+                                                }
+                                                </i>
+                                                {item.nick}</span>
                                             <span>{dateFormatter(item.create_time)}</span>
                                         </div>
                                         <div className="content">
@@ -465,7 +480,16 @@ const [replyInfo,setReplyInfo]=useState({})
                                                                         </div>
                                                                         <div className="right">
                                                                             <div className="info">
-                                                                                <span className='userName'>{i.nick}</span>
+                                                                                <span className='userName'>
+                                                                                <i>
+                                                                                {
+                                                                                    i.nick==="钟爱enfp女孩"?
+                                                                                    '☆博主☆ '
+                                                                                    :''
+                                                                                }
+                                                                                </i>
+                                                                                    {i.nick}
+                                                                                </span>
                                                                                 <span>{dateFormatter(i.create_time)}</span>
                                                                             </div>
                                                                             <div className="content">
@@ -493,6 +517,13 @@ const [replyInfo,setReplyInfo]=useState({})
                                                                                     <div className="right">
                                                                                         <div className="info">
                                                                                             <span className='userName'>
+                                                                                            <i>
+                                                                                            {
+                                                                                                one.nick==="钟爱enfp女孩"?
+                                                                                                '☆博主☆ '
+                                                                                                :''
+                                                                                            }
+                                                                                            </i>
                                                                                                 {one.nick}
                                                                                                 <span className='replyTitle'>回复</span> 
                                                                                                
@@ -502,7 +533,14 @@ const [replyInfo,setReplyInfo]=useState({})
                                                                                                     :
                                                                                                     (
                                                                                                         one.origin_id===i.origin_id?
-                                                                                                        i.nick
+                                                                                                        (<i>
+                                                                                                            {
+                                                                                                                i.nick==="钟爱enfp女孩"?
+                                                                                                                '☆博主☆ '
+                                                                                                                :''
+                                                                                                            } <span>{i.nick}</span>
+                                                                                                        </i>
+                                                                                                        )
                                                                                                         :getOriginIdNick(one.parent_id)
                                                                                                         
                                                                                                     )

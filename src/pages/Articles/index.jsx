@@ -202,8 +202,7 @@ export default function Articles() {
                     item.blog_id===(id*1)?
                      (
                       // <link to="/sort" key={index}>
-                        
-                        <Link to="/sort" key={index}><span>#{item.name}</span></Link>
+                        <Link to="/sort/sortArticles"  state={{item:item.name,sort:sort}} key={index}><span>#{item.name}</span></Link>
                       // </link>
                       // <a href="www.baidu.com" key={index}>
                           
@@ -222,7 +221,8 @@ export default function Articles() {
                   label.map((item,index)=>
                     item.blog_id===(id*1)?
                      (
-                      <Link to="/label" key={index}><span>#{item.name}</span></Link>
+                     
+                      <Link to="/label/labelArticles" state={{item:item.name,label:label}} key={index}><span>#{item.name}</span></Link>
                     ):
                     ''
                   )

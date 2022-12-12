@@ -15,6 +15,11 @@
         // width: 90%;
         padding-right: 30%;
         .showLabel{
+            .echarts{
+                // padding: 0 50px;
+                margin: 0 auto;
+                // padding-left: 150px;
+            }
             .ant-card-body{
                 p{
                     font-size: 35px;
@@ -42,6 +47,7 @@
                     //     color: red;
     
                     // }
+                    
                 }
             }
         }

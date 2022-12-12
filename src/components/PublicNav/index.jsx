@@ -69,7 +69,7 @@ export default function PublicNav() {
 
   }
   return (
-    <div>
+    <div className='nav'>
       {/* defaultOpenKeys={['/home']} defaultSelectedKeys={[pathname]}都是通过上面的key值进行匹配 */}
        <Menu  mode="horizontal" items={items}  onClick={onClick} defaultOpenKeys={['/']} defaultSelectedKeys={[pathname]}/>;
     </div>

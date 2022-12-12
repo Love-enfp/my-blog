@@ -58,6 +58,7 @@ const [replyInfo,setReplyInfo]=useState({})
 
     const [originId,setOriginId]=useState(0)
   useEffect(()=>{
+    setMainContent('')
     window.scrollTo(0, 0);
     api.geMessage({page}).then(res=>{
         // 更新所有的数据
@@ -70,8 +71,8 @@ const [replyInfo,setReplyInfo]=useState({})
        const parentReply=res.data.allMessage.filter(item=>{
         return item.parent_id==0
        })
-       const allNum=getMaxId(parentReply)
-       setAllCommentNum(allNum)
+    //    const allNum=getMaxId(parentReply)
+       setAllCommentNum(parentReply)
     //    console.log(res.data.allMessage);
     })
   },[refresh,page])
@@ -93,22 +94,21 @@ const [replyInfo,setReplyInfo]=useState({})
         {
             params={
                 id:allMessagelist.length===0 ? 0 : (getMaxId(allMessagelist)+1),
-                nick:qqUserInfo.name,
-                email:qqUserInfo.qq+'@qq.com',
+                nick:qqUserInfo.name?qqUserInfo.name:nick,
+                email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                 content:maincontent,
                 avatar:qqImage,
                 create_time:currentTime,
                 parent_id:0,//注意，用0表示是一级评论，不是二级,
                 origin_id:0
             }
-            //   console.log('评论提交的是',replyid,params);
-            console.log(params);
+            // console.log(params);
         }
         else if(flag==0&&replyid!==-1){
             params={
                 id:allMessagelist.length===0 ? 0 : (getMaxId(allMessagelist)+1),
-                nick:nick? nick:qqUserInfo.name,
-                email:qqUserInfo.qq+'@qq.com',
+                nick:qqUserInfo.name?qqUserInfo.name:nick,
+                email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                 content:maincontent,
                 avatar:qqImage,
                 create_time:currentTime,
@@ -122,8 +122,8 @@ const [replyInfo,setReplyInfo]=useState({})
         {
             params={
                 id:allMessagelist.length===0 ? 0 : (getMaxId(allMessagelist)+1),
-                nick:nick? nick:qqUserInfo.name,
-                email:qqUserInfo.qq+'@qq.com',
+                nick:qqUserInfo.name?qqUserInfo.name:nick,
+                email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                 content:maincontent,
                 avatar:qqImage,
                 create_time:currentTime,
@@ -134,15 +134,18 @@ const [replyInfo,setReplyInfo]=useState({})
             console.log('三级评论提交的是',replyEndid,params);
         }
         if(replyid!==-1||replyEndid!==-1){
+            console.log('@@',replyInfo);
             const {email}=replyInfo
             const {nick}=params
             let dataParams={
                 email,
                 nick
             }
+            console.log("邮箱的回复",dataParams);
             api.submitEmail(dataParams).then((res)=>{
             })
         }
+        console.log('提交的评论',params);
         api.submitMessage(params).then(res=>{
             if(res.data.status===200)
             {
@@ -157,7 +160,7 @@ const [replyInfo,setReplyInfo]=useState({})
                     avatar:''
                 })
                 // console.log(maincontent);
-
+                emotor.current.clean();
                 // setMainContent(' gg')
                 setqqImage('https://pics5.baidu.com/feed/960a304e251f95cab3693a1b1509a238660952a0.jpeg?token=5d39e841d225ed2520ab17eaf7cea79a')
                 // 关闭二级回复表单
@@ -198,7 +201,7 @@ function getOriginIdNick(origin_id){
         url:'https://api.usuuu.com/qq/'+event.target.value
      }).then(res=>{
         if(res.data.code===200)
-        {
+        {console.log(122222222);
             // 更新qq相关信息
             setqqUserInfo(res.data.data)
             // 自动填充邮箱
@@ -210,6 +213,7 @@ function getOriginIdNick(origin_id){
             setqqImage(res.data.data.avatar)
         }
         else{
+            console.log(111111111);
                 message.error('qq号输入错误！请重试')
         }
     })
@@ -281,7 +285,8 @@ function contentOnChange(content) {
             <div className="help">
                 <p>您可以选择两种方式进行评论哟：</p>
                 <p><StarOutlined className='icon'/>1.直接输入<span>qq号</span> ，获得昵称、邮箱、头像</p>
-                <p><StarOutlined className='icon'/>2.忽略qq,直接输入自定义的<span>昵称</span>和真实的<span>邮箱</span></p>
+                <p><StarOutlined className='icon'/>2.忽略qq,直接输入自定义的<span>昵称</span>和真实的<span>qq邮箱</span></p>
+                <p><StarOutlined className='icon'/>注意：评论回复将通过<span>qq邮箱</span>提醒您哟</p>
             </div>
             <div className="nick">
                 {
@@ -389,7 +394,7 @@ function contentOnChange(content) {
         </Card>
         <div className="messageArea">
             <Card>
-                <h1>留言区*</h1>
+                <h1>留言区</h1>
                 {
                     messageList.map((item,index)=>{
                         return (
@@ -403,7 +408,17 @@ function contentOnChange(content) {
                                     </div>
                                     <div className="right">
                                         <div className="info">
-                                            <span className='userName'>{item.nick}</span>
+                                            <span className='userName'>
+                                                <i>
+                                                {
+                                                    item.nick==="钟爱enfp女孩"?
+                                                    '☆博主☆ '
+                                                    :''
+                                                }
+                                                </i>
+                                                
+                                                {item.nick}
+                                            </span>
                                             <span>{dateFormatter(item.create_time)}</span>
                                         </div>
                                         <div className="content">
@@ -435,7 +450,16 @@ function contentOnChange(content) {
                                                                         </div>
                                                                         <div className="right">
                                                                             <div className="info">
-                                                                                <span className='userName'>{i.nick}</span>
+                                                                                <span className='userName'>
+                                                                                    <i>
+                                                                                    {
+                                                                                        i.nick==="钟爱enfp女孩"?
+                                                                                        '☆博主☆ '
+                                                                                        :''
+                                                                                    }
+                                                                                    </i>
+                                                                                    {i.nick}
+                                                                                </span>
                                                                                 <span>{dateFormatter(i.create_time)}</span>
                                                                             </div>
                                                                             <div className="content">
@@ -463,6 +487,13 @@ function contentOnChange(content) {
                                                                                     <div className="right">
                                                                                         <div className="info">
                                                                                             <span className='userName'>
+                                                                                            <i>
+                                                                                            {
+                                                                                                one.nick==="钟爱enfp女孩"?
+                                                                                                '☆博主☆ '
+                                                                                                :''
+                                                                                            }
+                                                                                            </i>
                                                                                                 {one.nick}
                                                                                                 <span className='replyTitle'>回复</span> 
                                                                                                
@@ -472,7 +503,15 @@ function contentOnChange(content) {
                                                                                                     :
                                                                                                     (
                                                                                                         one.origin_id===i.origin_id?
-                                                                                                        i.nick
+                                                                                                        (<i>
+                                                                                                            {
+                                                                                                                i.nick==="钟爱enfp女孩"?
+                                                                                                                '☆博主☆ '
+                                                                                                                :''
+                                                                                                            } <span>{i.nick}</span>
+                                                                                                        </i>
+                                                                                                        )
+                                                                                                       
                                                                                                         :getOriginIdNick(one.parent_id)
                                                                                                         
                                                                                                     )
@@ -514,7 +553,7 @@ function contentOnChange(content) {
                 }
                 <div className="page">
                     {/* 如果写成messageList.length会报错，因为页面刚渲染时候，是读取不到messageList，所有要尽量避开length使用，直接调用状态就行 */}
-                    <Pagination onChange={changePage}  total={(allCommentNum+1)}  pageSize={10}/>
+                    <Pagination onChange={changePage}  total={allCommentNum.length}  pageSize={10}/>
                 </div>
             </Card>
         </div>

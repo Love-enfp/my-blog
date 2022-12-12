@@ -27,6 +27,7 @@ const md = new markdownIt()
   //获得父组件传递过来的文章数据
   const articles=props.articlesData
   const articleView=props.articleView
+  console.log(props.articlesData);
   let flag=false
 
   const [list,setList]=useState([])
@@ -55,10 +56,10 @@ const md = new markdownIt()
     <div  className="articles">
         
         <h1 className='title'><LikeOutlined className='icon' />最新文章</h1>
-        <div className="sorts">
+        {/* <div className="sorts"> */}
             {/* <NavLink className='newest' onClick={newestList}>最新文章</NavLink> */}
             {/* <NavLink className='hostest' onClick={hostestList}>最热文章</NavLink> */}
-         </div>
+         {/* </div> */}
         {
             // !flag?
             articles.map((item,index)=>{
@@ -73,7 +74,7 @@ const md = new markdownIt()
                                  className='content'
                                 // 1.md.render用来解析markdown语法, 得到h1,,h2等html字符串
                                 // 2.dangerouslySetInnerHTML  将html字符串解析成真正的html标签
-                                 dangerouslySetInnerHTML={{__html:md.render(item.content.substr(0,150) + "..." )}}
+                                 dangerouslySetInnerHTML={{__html:md.render(item.content.length>200? item.content.substr(0,150) + "...":item.content )}}
                                 >
                                 {}
                                 </div>

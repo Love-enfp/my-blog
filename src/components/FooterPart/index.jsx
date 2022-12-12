@@ -6,6 +6,27 @@ import {QqOutlined,HomeOutlined,WechatOutlined,WhatsAppOutlined} from '@ant-desi
 import QQ from '../../assets/images/qq.png'
 import Wechat from '../../assets/images/wechat.png'
 export default function FooterPart() {
+    // 计算开通博客已经多久
+    function handlerDateDurationCurrent (time) {
+        let d1 = new Date(time)
+        let d2 = new Date()
+        let cha = Math.abs(d2.getTime() - d1.getTime())
+        let days = parseInt(cha / (24 * 60 * 60 * 1000))
+        let hours = parseInt(cha % (24 * 60 * 60 * 1000) / (60 * 60 * 1000))
+        let mins =  parseInt(cha % (60 * 60 * 1000) / (60 * 1000))
+        let secs =  parseInt(cha % (60 *  1000) / ( 1000))
+        if (days) {
+          return ` ${days}天 ${hours}时 ${mins}分 ${secs}秒`
+        } else if (hours) {
+          return `+ ${hours}时 ${mins}分`
+        } else {
+          return `+ ${mins}分`
+        }
+      }
+      let preDate = '2022-12-09 17:34:54'
+      let result = handlerDateDurationCurrent(preDate)
+    //   console.log(result) // 30d 20h 3m
+
   return (
     <div className="footer">
         <ul>
@@ -33,7 +54,7 @@ export default function FooterPart() {
             </li>
         </ul>
         <p>赣ICP备20004408号-1</p>
-        <div>本站点已经开通：29天5时55分56秒 (*๓´╰╯`๓)</div>
+        <div>本站点已经开通：{result} (*๓´╰╯`๓)</div>
     </div>
   )
 }

@@ -65,7 +65,7 @@ export default function Label() {
       title: {//标题样式
         text: '标签分布图',
         left: 'left',
-        padding: [20, 20],
+        padding: [10, 0],
         textStyle:{
           color :'black',
           fontWeight :300,
@@ -117,7 +117,18 @@ export default function Label() {
     })
     return res
   }
- 
+   /* 实现向下跳转功能 */
+   function scrollToAnchor(anchorName,smooth){
+    // scrollToAnchor为h5新增API
+    if (anchorName) {
+      const anchorElement = document.getElementById(anchorName);
+      if (anchorElement) {
+        anchorElement.scrollIntoView({block: 'start', behavior: smooth? 'smooth': 'auto'});
+        // block:表示滚动到锚点的顶部或者底部，start/end
+        // behavior:表示滚动的效果，auto/instant/smooth(滚动效果)
+      }
+    }
+  }
   return (
     <div className='allLabels'>
       <Layout>
@@ -142,7 +153,7 @@ export default function Label() {
                           {/* 向路由组件传递state参数，可以传递更为复杂的数据！ */}
                           {/* 二级路由，路径不能加'/'，否则相当于重新去搜索这个页面，会跳转 */}
                           {/* 可用to=‘news’，to=‘./news’，to=‘/home/news’  */}
-                          <Link  to="labelArticles" style={{color:getColor()}}  state={{item:item,label:label}}  >
+                          <Link  to="labelArticles" style={{color:getColor()}}  state={{item:item,label:label}}  onClick={()=>scrollToAnchor("components-anchor-demo-basic", true)} >
                                 {item}
                                 <span className='num'>
                                   {values[index]}
@@ -156,7 +167,7 @@ export default function Label() {
             </Card>
 
             {/* 指定路由组件（标签对应的文章）--呈现的位置 */}
-            <Card className='showArticles'>
+            <Card className='showArticles'  id="components-anchor-demo-basic">
                   <Outlet></Outlet>
             </Card>
             <div className="rightMenu">

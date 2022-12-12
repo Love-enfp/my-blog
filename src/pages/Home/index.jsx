@@ -88,8 +88,8 @@ export default function Home() {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true, 
-    speed: 3000,
-    autoplaySpeed: 3500,
+    speed: 2500,
+    autoplaySpeed: 2500,
     // cssEase: "linear"
   };
   // 返回顶部设置
@@ -134,7 +134,7 @@ export default function Home() {
                 />
               </div>
               <div className="title">
-                  <p>欢迎来到我的小房子，积极向上，充满力量！</p>
+                  没有伞的孩子，必须努力奔跑！
               </div>
               <div className="guide"  onClick={()=>scrollToAnchor("components-anchor-demo-basic", true)}>
 

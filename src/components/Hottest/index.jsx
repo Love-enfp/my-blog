@@ -38,11 +38,9 @@ export default function Hottest(props) {
       <h3><BarChartOutlined /><span> 文章热度排行</span></h3>
       
       </div>
-      <div className="hotIcon">
-        <FireFilled className='first'/>
-        <FireFilled className='second' />
-        <FireFilled  className='third'/>
-      </div>
+        {/* <FireFilled className='first'/> */}
+        {/* <FireFilled className='second' /> */}
+        {/* <FireFilled  className='third'/> */}
       {
         articleView?
         articleView.map((item,index)=>{
@@ -57,7 +55,7 @@ export default function Hottest(props) {
                   <div className="title">
                     <div className="title">
                       <NavLink  to={`/article/${item.id}`}>
-                         <p>{item.title}</p>
+                         <p><span>{index+1}</span>{item.title}</p>
                       </NavLink>
                       
                     </div>

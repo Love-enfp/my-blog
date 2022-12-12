@@ -1,11 +1,13 @@
 .labelList{
     z-index: 10;
     margin-top: 50px;
+    width: 20vw!important;
+    
     // position: absolute;
     // top: 25%;
     // right: 5%;
     box-shadow: 10px 10px 10px 10px #dedede;
-    .LabelSlider{
+    .LabelSlider{ width: 20vw!important;
         p{
             font-size: 27px;
         }

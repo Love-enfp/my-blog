@@ -5,6 +5,7 @@ import './index.scss'
 // import { NavLink } from 'react-router-dom'
 import { EditFilled } from '@ant-design/icons'
 import { getColor,getSize } from '../../utils/random'
+import { Link } from 'react-router-dom'
 import api from '../../api'
 // import { NavLink } from 'react-router-dom'
 export default function LabelSlider() {
@@ -13,11 +14,13 @@ export default function LabelSlider() {
   // keys存储对值，比如['2'，'1',....]
   const [values,setValues]=useState([])
 
+  const [label,setLabel]=useState([])
   useEffect(()=>{
     // 获得所有的文章标签
     api.getLabels().then(res=>{
       if(res.data.status===200)
       {
+        setLabel(res.data.result)
         // 获得纯标签数据arr，仅有标签名
         const arr=res.data.result.map(item=>item.name)
         let objGroup = arr.reduce(function (obj, name) {
@@ -53,9 +56,11 @@ export default function LabelSlider() {
                   keys.map((item,index)=>{
                     return (
                       
-                      <div className='label'  style={{color:getColor(),fontSize:getSize(),fontWeight:600}} key={index}>
+                      <div className='label'   key={index}>
                         {/* <Link to="/label" key={index}><span>#{item}</span></Link> */}
-                        {item}
+                        <Link  to="/label/labelArticles" style={{color:getColor(),fontSize:getSize(),fontWeight:600}} state={{item:item,label:label}}  >
+                          {item}
+                        </Link>
                         {/* 暂时不需要显示数量{values[index]} */}
                       </div>
                     )

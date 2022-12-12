@@ -19,7 +19,8 @@
         }
     }
     .ant-card{
-        height: 450px!important;
+        height: 420px!important;
+        width: 47vw!important;
         .ant-card-body{
             // height: 100%;
             .artileContent{
@@ -28,7 +29,7 @@
                 width: 60%;
                 .content{
                     display: block;
-                    height:180px!important;
+                    height:160px!important;
                     // overflow: scroll;
                     font-size: 12px;
                     overflow: hidden;
@@ -86,6 +87,9 @@
             width: 260px;
         }
     }
+
+    // @media screen and (max-width: 900px) {
+    // }
 }
 /*  内部滚动条样式 ----- begin*/
 // .articles::-webkit-scrollbar {
