@@ -5,6 +5,7 @@ import {QqOutlined,HomeOutlined,WechatOutlined,WhatsAppOutlined} from '@ant-desi
 // 引入qq和微信照片
 import QQ from '../../assets/images/qq.png'
 import Wechat from '../../assets/images/wechat.png'
+
 export default function FooterPart() {
     // 计算开通博客已经多久
     function handlerDateDurationCurrent (time) {
@@ -47,6 +48,7 @@ export default function FooterPart() {
             </li>
             <li className='message'>
                 <h3><HomeOutlined /> 小房子信息</h3>
+                
                 <h2>文章总数：1</h2>
                 <h2>访问总数：1</h2>
                 <h2>评论总数：1</h2>
@@ -54,7 +56,11 @@ export default function FooterPart() {
             </li>
         </ul>
         <p>赣ICP备20004408号-1</p>
-        <div>本站点已经开通：{result} (*๓´╰╯`๓)</div>
+        <div>本站点已经开通：{result} (*๓´╰╯`๓)
+        <span id="busuanzi_container_site_pv">| 总访问量 <i className="fa fa-spinner fa-spin"></i><span id="busuanzi_value_site_pv"></span> 次 </span>
+
+        <span id="busuanzi_container_site_uv">| 总访客数 <i className="fa fa-spinner fa-spin"></i><span id="busuanzi_value_site_uv"></span> 人 </span>
+        </div>
     </div>
   )
 }

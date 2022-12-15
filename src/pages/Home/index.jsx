@@ -39,6 +39,7 @@ import FooterPart from '../../components/FooterPart';
 const { Header, Content } = Layout;
 export default function Home() {
 
+
   const [articleSwipper,setArticleSwipper]=useState([])
   
   const allReduxArticles=useSelector(state=>state.articles)
@@ -134,6 +135,7 @@ export default function Home() {
                 />
               </div>
               <div className="title">
+                
                   没有伞的孩子，必须努力奔跑！
               </div>
               <div className="guide"  onClick={()=>scrollToAnchor("components-anchor-demo-basic", true)}>
