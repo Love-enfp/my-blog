@@ -137,7 +137,7 @@
            }
            .articleNew{
             width: 50vw!important;
-                margin:  0 auto;
+            margin:  0 auto;
                 /*  内部滚动条样式 ----- begin*/
            .ant-card-body::-webkit-scrollbar {
             /*滚动条整体样式*/
@@ -221,7 +221,158 @@
 //     }
 //   }
 
-        
+  
     
 }
+@media screen and (max-width: 600px) {
+    .home .ant-layout-header{
+        .nav{
+            width: 95vw;
+            // margin-right: 120px;
+            ul{
+                display: flex;   
+                width: 100vw;
+            }
+            .ant-menu-item-selected{
+                font-size: 12px!important;
+            }
+            .ant-menu-item-icon{
+                // display: block;
+                font-size: 12px!important;
+            }
+            .ant-menu-overflow{
+                // display: block;
+                // margin-right: 0;
+               
+                font-size: 12px!important;
 
+            }
+            .ant-menu-title-content{
+                margin-left: 0px!important;
+            }
+            .ant-menu-overflow-item{
+                margin-right: 0;
+                font-size: 12px;
+            }
+        }
+        .userImage{
+            .ant-image-img{
+                width: 20vw;
+                height: 20vw;
+            }
+        }
+        .title{
+            // width: 50px;
+            font-size:13px!important;
+        }
+        .guide{
+            top: 0!important;
+            span{
+                font-size: 20px!important;
+            }
+        }
+    }
+    .home .mainContent .ant-layout-content .articleRecommend{
+        width: 100vw!important;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .recommendNew{
+            font-size: 20px;
+        }
+        .slick-pre{
+            left: -16px;
+        }
+        .slick-next{
+            right: -12px;
+        }
+        .swipper .slick-dots{
+            
+            height: 20px;
+            li{
+                width: 10px;
+                height: 10px;
+                button::before{
+                    line-height: -5px;
+                }
+            }
+        }
+        .swipper .img img{
+            width: 30vw;
+            height: 32vw;
+        }
+        .swipper .img .text{
+            margin-left: 0;
+            width: 100%;
+            font-size: 12px;
+            height: 36px;
+        }
+    }
+    .home .mainContent .ant-layout-content .articleNew{
+        width: 100vw!important;
+        .articles .title{
+            font-size: 20px;
+        }
+        .articles .ant-card{
+            width: 100vw !important;
+            height: 520px !important
+        }
+        .articles .ant-card .ant-card-body{
+            display: block!important;
+            width: 90vw!important;
+            .contentImg{
+                float: left;
+                img{
+                    height: 180px;
+                    width: 100%;
+                }
+            }
+            .artileContent{
+                display: block;
+                width: 100%;
+                float: none;
+               .content{
+                height: 97px !important
+               }
+               .articleDeatil{
+                width: 100%;
+               }
+            }
+            .contentImg{
+                float: none;
+            }
+        }
+    }
+    .home .mainContent .ant-card-body{
+        padding: 12px!important;
+    }
+    .home .footer{
+        ul{
+            .first{
+                // margin-left: 95px;s
+            }
+            h3{
+                font-size: 12px;
+            }
+            h2{
+                font-size: 10px;
+            }
+            li:nth-child(2){
+                img{
+                    width: 20vw;
+                }
+            }
+            li:nth-child(3){
+                img{
+                    width: 20vw;
+                }
+            }
+        }
+        div{
+            font-size: 10px;
+        }
+    }
+    .home .ant-back-top{
+        right: 2%;
+        width: 20px!important;
+    }
+}

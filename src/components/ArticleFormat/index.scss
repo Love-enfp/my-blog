@@ -22,10 +22,18 @@
         height: 420px!important;
         width: 47vw!important;
         .ant-card-body{
-            // height: 100%;
+            height: 100%;   
+            // display: flex;
+            .contentImg{
+                float: right;
+                img{
+                    height: 250px;
+                    width: 260px;
+                }
+            }
             .artileContent{
                 // height: 100%;
-                float: left;
+                float: right;
                 width: 60%;
                 .content{
                     display: block;
@@ -80,17 +88,12 @@
         }
     }
     
-    .contentImg{
-        float: left;
-        img{
-            height: 250px;
-            width: 260px;
-        }
-    }
+   
 
     // @media screen and (max-width: 900px) {
     // }
 }
+
 /*  内部滚动条样式 ----- begin*/
 // .articles::-webkit-scrollbar {
 //     /*滚动条整体样式*/

@@ -65,6 +65,10 @@ const md = new markdownIt()
             articles.map((item,index)=>{
                 return (
                     <Card key={index} style={{ width: 700 ,height:350}}>
+                        {/* 右侧文章图片信息 */}
+                        <div className="contentImg">
+                                <img src={item.img} alt="" />
+                            </div>
                             {/* 文章内容 */}
                             <div className="artileContent">
                                 <h1>{item.title}</h1>
@@ -109,10 +113,7 @@ const md = new markdownIt()
                                     </div> */}
                                 </div>
                             </div>
-                            {/* 右侧文章图片信息 */}
-                            <div className="contentImg">
-                                <img src={item.img} alt="" />
-                            </div>
+                            
                     </Card>
                 )
             })
