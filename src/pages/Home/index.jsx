@@ -192,7 +192,9 @@ export default function Home() {
               </Card>
 
                 <SliderRight></SliderRight>
-                 <Hottest articleView={articleView} getArticleSwipper={getArticleSwipper}></Hottest> 
+                <div className="hootpart">
+                  <Hottest articleView={articleView} getArticleSwipper={getArticleSwipper} ></Hottest> 
+                </div>
               <div className="timeLine">
                 {/* <TimeLine></TimeLine> */}
               </div>

@@ -64,3 +64,41 @@
         text-align: center;
     }
 }
+@media screen and (max-width: 600px) {
+
+   
+  
+  
+    .footer{
+        height: 65vw;
+        ul{
+            height: 150px;
+            .first{
+                // margin-left: 95px;s
+            }
+            h3{
+                font-size: 12px;
+            }
+            h2{
+                font-size: 10px;
+            }
+            li:nth-child(2){
+                img{
+                    width: 20vw;
+                }
+            }
+            li:nth-child(3){
+                img{
+                    width: 20vw;
+                }
+            }
+        }
+        div{
+            font-size: 10px;
+        }
+    }
+    .home .ant-back-top{
+        right: 2%;
+        width: 20px!important;
+    }
+}

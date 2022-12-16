@@ -2,10 +2,12 @@ import React from 'react'
 // 先引入antd样式
 import 'antd/dist/antd.min.css'
 // 再导入全局样式，防止覆盖
-import { Menu } from 'antd'
+import { Menu ,Drawer,Button,Space} from 'antd'
 import './index.scss'
-import {AppstoreOutlined,HomeOutlined,EditFilled, EditOutlined,PlayCircleOutlined,EyeOutlined} from '@ant-design/icons';
+import { useState } from 'react'
+import {AppstoreOutlined,HomeOutlined,EditFilled, EditOutlined,PlayCircleOutlined,EyeOutlined,UnorderedListOutlined} from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import SliderRight2 from '../../components/SliderRight2'
 export default function PublicNav() {
   const {pathname}=useLocation()
   // 菜单项
@@ -68,8 +70,41 @@ export default function PublicNav() {
       }
 
   }
+
+  const [open, setOpen] = useState(false);
+  const [size, setSize] = useState();
+  const showDefaultDrawer = () => {
+    setSize('small');
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
   return (
     <div className='nav'>
+        
+      
+      <div className="mask">
+      <Space>
+        <span onClick={showDefaultDrawer}><UnorderedListOutlined></UnorderedListOutlined> </span>
+      </Space>
+      <Drawer
+        title={`${size} Drawer`}
+        placement="left"
+        size={size}
+        onClose={onClose}
+        open={open}
+        mask
+      >
+        <div className="maskSlider">
+          <SliderRight2></SliderRight2>
+
+        </div>
+      </Drawer>
+     
+      </div>
+      
       {/* defaultOpenKeys={['/home']} defaultSelectedKeys={[pathname]}都是通过上面的key值进行匹配 */}
       
        <Menu  mode="horizontal" items={items}  onClick={onClick} defaultOpenKeys={['/']} defaultSelectedKeys={[pathname]}/>;

@@ -39,7 +39,7 @@
                     display: block;
                     height:160px!important;
                     // overflow: scroll;
-                    font-size: 12px;
+                    font-size: 12px!important;
                     overflow: hidden;
                 }
                 .readMore{
@@ -128,3 +128,39 @@
 //     background   :#04bac0;
 // }
 /*  内部滚动条样式 ----- end*/
+@media screen and (max-width: 600px) {
+        .articles .title{
+            font-size: 20px!important;
+        }
+        .articles .ant-card{
+            width: 88vw !important;
+            height: 520px !important
+        }
+        .articles .ant-card .ant-card-body{
+            display: block!important;
+            width: 90vw!important;
+            .contentImg{
+                float: left;
+                img{
+                    height: 180px;
+                    width: 100%;
+                }
+            }
+            .artileContent{
+                display: block;
+                width: 100%;
+                float: none;
+               .content{
+                height: 97px !important
+               }
+               .articleDeatil{
+                width: 100%;
+               }
+            }
+            .contentImg{
+                float: none;
+            }
+        }
+
+ 
+}

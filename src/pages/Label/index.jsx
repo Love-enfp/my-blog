@@ -171,7 +171,10 @@ export default function Label() {
                   <Outlet></Outlet>
             </Card>
             <div className="rightMenu">
-              <SliderRight2></SliderRight2>
+              <div className="notMask">
+                <SliderRight2></SliderRight2>
+
+              </div>
             </div>
         </Content>
         <FooterPart></FooterPart>

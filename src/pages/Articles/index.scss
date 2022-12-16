@@ -123,3 +123,279 @@
     color: orangered;
     padding-left: 100px;
 }
+@media screen and (max-width: 600px){
+    .articlePage{
+        .ant-layout-header{
+            height: 50vw;
+        }
+        .ant-layout-content{
+            margin-left: 5vw!important;
+            padding-right: 0!important;
+            .ant-card-body{
+                padding: 15px;
+                .allContent{
+                    h1{
+                        font-size: 18px!important;
+                    }
+                    .articleDeatil{
+                        width: 90vw;
+                        font-size: 12px;
+                        margin-left: -10px;
+                        div{
+                            height: 30px!important;
+                            line-height: 30px!important;
+                        }
+                        .userInfo{
+                            // height: 30px!important;
+                            img{
+                                width: 25px!important;
+                                height: 25px!important;
+                            }
+                            
+                        }
+                        .dislike{
+                            display: none;
+                        }
+                    }
+                    .content{
+                        padding-left: 0!important;
+                        padding-right: 0!important;
+                        font-size: 13px;
+                    }
+                    .admire{
+                        div{
+                            height: 30px;
+                            width: 30px;
+                            line-height: 30px;
+                            a{
+                                // height: 30px!important;
+                            }
+                            span{
+                                font-size: 20px;
+                            }
+                            
+                        }
+                        .tip{
+                            span{
+                                height: 100%;
+                                display: block;
+                                margin-bottom: 1px;
+                                margin-top: 4px;
+                            }
+                            padding-bottom: 5px;
+                        }   
+                    }
+                }
+                .moreInfo{
+                    font-size: 13px;
+                }
+            }
+            .comment{
+               
+                    .commentMenu{
+                        .ant-card-body{
+                            padding: 10px!important;
+                            .help{
+        
+                                top: 0vw;
+                                font-size: 12px;
+                                right: 0;
+                                left: 20px;
+                            }
+                            .nick{
+                                margin-top: 120px!important;
+                                span{
+                                    font-size: 19px;
+                                }
+                               
+                            }
+                            h1{
+                                margin-top: 0px!important;
+                                font-size: 19px;
+                            } 
+                            .replyObject{
+                                font-size: 15px;
+                            }
+                            form{
+                                margin-top: 0px!important;
+                                // padding-bottom: 20px;
+                                .userInfo{
+                                    display: inline-block;
+                                    width: 85vw;
+                                    .ant-form-item-label label{
+                                        font-size: 13px;
+                                    }
+                                    .ant-form-item{
+                                        // height: 80px;
+                                        margin: 0;
+                                        // margin-top: 10px;    
+                                        .ant-form-item-row{
+                                            // display: flex;
+                                            // justify-content: space-between;
+                                            .ant-form-item-label{
+                                                padding: 0;
+                                                // display: inline;;
+                                                // float: left;
+                                            }
+                                            .ant-form-item-control{
+                                                //  display: inline;;
+                                                // float: left;
+                                                
+                                            }
+                                        }
+                                    }
+                                    .ant-form-item:nth-child(1){
+                                        // display: inline;
+                                        img{
+                                            margin-left: 20px;
+                                            width: 18vw!important;
+                                            height: 18vw!important;
+                                        }
+                                    }
+                                    .ant-form-item:nth-child(2){
+                                        // display: inline;
+                                        input{
+                                            width: 70vw!important;
+                                            margin-left: 15px;
+                                        }
+                                        
+                                    }
+                                    .ant-form-item:nth-child(3){
+                                        input{
+                                            width: 70vw!important;
+                                            margin-left: 15px;
+                                        }
+                                        // label{
+                                        //     margin-left: 10px;
+                                        // }
+                                    }
+                                    .ant-form-item:nth-child(4){
+                                        input{
+                                            width: 70vw!important;
+                                            margin-left: 15px;
+                                        }
+                                    }
+                                }
+                                .content{
+                                    margin-top: 50px;
+                                    .ant-form-item{
+                                        margin: 0 0 10px;
+                                    }
+                                    .redit-menu{
+                                        // font-size: 20px;
+                                        .menu-item{
+                                            width: 10vw;
+                                            
+                                            img{
+                                                width: 6vw;
+                                                height: 6vw;
+                                            }
+                                        }
+                                    }
+                                    .redit-select{
+                                        .select-item{
+                                            img{
+                                                width: 6vw;
+                                                height: 6vw;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .commentArea{
+                        .ant-card-body{
+                            padding:10px;
+                            h1{
+                                font-size: 19px;
+                                font-weight: 500;
+                            }
+                            .commentandreply{
+                                .commentOne{
+                                    padding-left: 0;
+                                    .left{
+                                        img{
+                                            width: 12vw!important;
+                                            height:  12vw!important;
+                                        }
+                                    }
+                                    .right{
+                                        .info{
+                                            .userName{
+                                                font-size: 13px;
+                                            }
+                                            span:nth-child(2){
+                                                font-size: 12px;
+                                                color: rgb(152, 134, 134);
+                                            }
+                                        }
+                                        .content{
+                                            // margin-top: 10px;
+                                            font-size: 13px;
+                                        }
+                                    }
+                                }
+                                .commentReply{
+                                    padding-left: 15vw!important;
+                                    .reply{
+                                        .left{
+                                            img{
+                                                width: 12vw!important;
+                                                height:  12vw!important;
+                                            }
+                                        }
+                                        .right{
+                                            .info{
+                                                .userName{
+                                                    font-size: 13px;
+                                                }
+                                                span:nth-child(2){
+                                                    display: block;
+                                                    font-size: 12px;
+                                                    color: rgb(152, 134, 134);
+                                                }
+                                            }
+                                            .content{
+                                                // margin-top: 10px;
+                                                font-size: 13px;
+                                            }
+                                        }
+                                    }
+                                    .thirdReply{
+                                        .endReply{
+                                            .left{
+                                                img{
+                                                    width: 12vw!important;
+                                                    height:  12vw!important;
+                                                }
+                                            }
+                                            .right{
+                                                .info{
+                                                    .userName{
+                                                        font-size: 13px;
+                                                        
+                                                    }
+                                                    span:nth-child(2){
+                                                        // display: block;
+                                                        font-size: 12px;
+                                                        color: rgb(152, 134, 134);
+                                                        
+                                                    }
+                                                }
+                                                .content{
+                                                    // margin-top: 10px;
+                                                    font-size: 13px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+        }
+    }
+    
+}

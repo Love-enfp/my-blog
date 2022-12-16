@@ -93,3 +93,84 @@
         }
     }
 }
+@media screen and (max-width: 600px){
+    .ant-layout-content{
+        margin: 0 auto;
+        width: 90vw!important;
+        .bulletScreen{
+           
+            height: 50vw;
+            .screen{
+                width: 70vw!important;
+                height: 50vw!important;
+                div{
+                    .bullet-head{
+                        margin-left: 33px;
+                        width: 7vw!important;
+                        height: 7vw!important;
+                        img{
+                            width: 7vw!important;
+                             height: 7vw!important;
+                        }
+                    }
+                    .bullet-msg{
+                        font-size: 13px;
+                    }
+                }
+            }
+            .bullet{
+                input{
+                    height: 24px!important;
+                    width: 40vw!important;
+                }
+                button{
+                    // margin-top: 10px;
+                    height: 24px!important;
+                    span{
+                        font-size: 12px!important;
+
+                    }
+                }
+                .ant-btn{
+                    line-height: 14px;
+                }
+            }
+        }
+        h1{
+            font-size: 18px!important;
+        }
+        .userInfo{
+            height: 80vw!important;
+            .left{
+                width: 35vw;
+                img{
+                    width: 25vw!important;
+                    height: 25vw!important;
+                }
+            }
+            .right{
+                margin-top: -20px;
+                margin-left: 0!important;
+                span{
+                    font-size: 13px!important;
+
+                }
+            }
+        }
+        .mylog{
+            p{
+                font-size: 14px!important;
+            }
+        }
+        .goal{
+            margin-top: 30px!important;
+            .content{
+                padding-left: 0!important;
+                .one{
+                    font-size: 14px!important;
+
+                }
+            }
+        }
+    }
+}

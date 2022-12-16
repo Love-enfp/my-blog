@@ -15,3 +15,13 @@
        
     }
 }
+@media screen and (max-width: 600px){
+    .music{
+        .ant-layout-header{
+            height: 50vw;
+        }
+        iframe{
+            width: 90vw!important;
+        }
+    }
+}

@@ -342,7 +342,7 @@ function contentOnChange(content) {
                     </Form.Item>
 
                     <Form.Item
-                    label="QQ:"
+                    label=" QQ:"
                     name="QQ"
                     onBlur={(event)=>getAllQQIinfo(event)}
                     >
