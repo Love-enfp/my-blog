@@ -119,14 +119,18 @@
 
                 }
                 .showArticles{
-                    .articles{
-                        
-                        .content{
-                            .allLabels .ant-layout-content .ant-card-body p{
-                                font-size: 12px!important;
+                    width: 95vw!important;
+                    .labelArticle{
+                        .articles{
+                             margin-right: 5px!important;
+                            .content{
+                                .allLabels .ant-layout-content .ant-card-body p{
+                                    font-size: 12px!important;
+                                }
                             }
                         }
                     }
+                    
                 }
             }
         }

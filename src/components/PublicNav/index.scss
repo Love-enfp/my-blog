@@ -43,24 +43,8 @@
 .triggerList{
     color: white;
 }
-.nav .mask{
-    margin-top: 40px;
-    z-index: 5;
-    
-    span{
-        color: white;
-        width: 15px;
-        height: 15px;
-    }
-}
-.nav{
-    position: relative;
-    .mask{
-        position: fixed;
-        left: 0;
-        top: 0;
-    }
-}
+
+
 .ant-drawer-left{
     .ant-drawer-content-wrapper{
         width: 60vw!important;
@@ -100,12 +84,29 @@
 //   }
 // }
 @media screen and (max-width: 600px) {
+
+    #rc-menu-uuid-85708-14-rc-menu-more-popup{
+        display: block;
+        width: 30px!important;
+        margin-top: 50px;
+    }
+
+    .ant-menu-item{
+        height: 27px!important;
+    }
+    .ant-menu-item:not(:last-child){
+        margin-bottom: 0!important;
+
+    }
+    .ant-menu-vertical{
+        min-width:25px!important;
+    }
         .nav{
-            width: 95vw;
+            width: 85vw;
             // margin-right: 120px;
             ul{
                 display: flex;   
-                width: 100vw;
+                width: 95vw;
             }
             .ant-menu-item-selected{
                 font-size: 12px!important;
@@ -125,6 +126,9 @@
                 margin-left: 0px!important;
             }
             .ant-menu-overflow-item{
+                display: block;
+                height: 100%!important;
+                width: 15vw;
                 margin-right: 0;
                 font-size: 12px;
             }
@@ -145,8 +149,28 @@
                 font-size: 20px!important;
             }
     }
-    
-    
+    .hootpart{
+        display: none;
+    }
+    .nav{
+        position: relative;
+        .mask{
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+    }
+    .nav .mask{
+        margin-top: 40px;
+        z-index: 5;
+        span
+        svg{
+            color: white;
+            width: 20px;
+            height: 20px;
+            font-weight: 700;
+        }
+    }
     .ant-drawer-header{
         display: none!important;
     }
@@ -193,7 +217,7 @@
             }
             .hottst{
                 overflow:scroll;
-                height: 400px;
+                height: 420px;
                 width: 55vw!important;
                 top: 240px!important;
                 margin-left: 0!important;

@@ -119,7 +119,7 @@ export default function AboutMe() {
           <Header>
             <PublicNav></PublicNav>
           </Header>
-          <Content>
+          <Content className='aboutmecontnet'>
             {/* 弹幕区域 */}
             <div className="bulletScreen">
               <div className="screen" ></div>

@@ -28,6 +28,9 @@ export default function LabelArticles() {
     })
 
     return (
+        <div className="labelArticle">
         <ArticleFormat articlesData={all}></ArticleFormat>
+
+        </div>
     )
 }

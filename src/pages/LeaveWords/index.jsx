@@ -557,7 +557,10 @@ function contentOnChange(content) {
                 </div>
             </Card>
         </div>
-            <Hottest></Hottest>
+            
+                <div className="hootpart">
+                        <Hottest></Hottest>
+                  </div>
             <SliderRight></SliderRight>
         </Content>
         <FooterPart></FooterPart>
