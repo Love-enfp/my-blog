@@ -1,0 +1,23 @@
+.buildlog{
+    .mask{
+        display: none;
+    }
+    .vertical-timeline{
+        position: relative;
+        background-image: url('../../assets/images/buildlogbgc4webp.webp');
+        
+        // background-size: 100% 100%;
+        // height: 500px;
+        margin-top: 20px;
+        .anticon-star{
+            svg{
+                margin-left: -2px;
+                margin-top: 8px;
+            }
+        }
+        .vertical-timeline-element-date{
+            font-weight: 700;
+            font-size: 20px;
+        }
+    }
+}

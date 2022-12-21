@@ -17,7 +17,8 @@ const base={
     submitbullet:'/api/submitbullet',
     emailreply:'/api/emailreply',
     view:'/api/view',
-    currentView:'/api/currentview'
+    currentView:'/api/currentview',
+    buildlog:'/api/buildlog'
 }
 
 
@@ -126,9 +127,15 @@ const api={
             url:base.baseUrl+base.currentView,
             data:params
         })
+    },
+    
+    // 获得建站日志
+    getBuildLog(){
+        return axios({
+            method:'get',
+            url:base.baseUrl+base.buildlog
+        })
     }
-    
-    
 
 }
 

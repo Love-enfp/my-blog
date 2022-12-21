@@ -12,6 +12,7 @@ import Articles from '../pages/Articles'
 import Label from '../pages/Label'
 import LabelArticles from '../components/LabelArticles'
 import SortArticles from '../components/SortArticles'
+import BuildLog from '../pages/BuildLog'
 const routes= [
     {
         path:'/',
@@ -42,6 +43,11 @@ const routes= [
     {
         path:'/aboutme',
         element:<AboutMe></AboutMe>
+    }
+    ,
+    {
+        path:'/buildlog',
+        element:<BuildLog></BuildLog>
     }
     ,
     {

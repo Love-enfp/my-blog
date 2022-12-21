@@ -126,11 +126,16 @@
                 margin-left: 0px!important;
             }
             .ant-menu-overflow-item{
+                
                 display: block;
                 height: 100%!important;
-                width: 15vw;
+                width: 7vw;
                 margin-right: 0;
                 font-size: 12px;
+                padding-left: 20px;
+            }
+            .ant-menu-overflow-item:nth-child(7){
+                padding-left: 45px;
             }
         }
         .userImage{

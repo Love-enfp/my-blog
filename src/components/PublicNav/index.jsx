@@ -5,7 +5,7 @@ import 'antd/dist/antd.min.css'
 import { Menu ,Drawer,Button,Space} from 'antd'
 import './index.scss'
 import { useState } from 'react'
-import {AppstoreOutlined,HomeOutlined,EditFilled, EditOutlined,PlayCircleOutlined,EyeOutlined,UnorderedListOutlined} from '@ant-design/icons';
+import {AppstoreOutlined,HomeOutlined,EditFilled,HighlightOutlined,HistoryOutlined, EditOutlined,PlayCircleOutlined,EyeOutlined,UnorderedListOutlined} from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SliderRight2 from '../../components/SliderRight2'
 export default function PublicNav() {
@@ -36,7 +36,12 @@ export default function PublicNav() {
     {
       label: '留言',
       key: '/leavewords',
-      icon: <EditOutlined />
+      icon: <HighlightOutlined />
+    },
+    {
+      label: '建站日志',
+      key: '/buildlog',
+      icon: <HistoryOutlined />
     },
     {
       label: '关于我',
@@ -67,6 +72,9 @@ export default function PublicNav() {
       }
       else if(key==='/aboutme'){
         navigate('/aboutme')
+      }
+      else if(key==='/buildlog'){
+        navigate('/buildlog')
       }
 
   }
