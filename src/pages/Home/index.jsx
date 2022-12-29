@@ -15,12 +15,9 @@ import api from '../../api';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import Article1 from '../../assets/images/article1.png'
-import Article2 from '../../assets/images/article2.png'
-import Article3 from '../../assets/images/article3.png'
-import Article4 from '../../assets/images/article4.jpg'
-import Article5 from '../../assets/images/article5.jpg'
-import Article6 from '../../assets/images/article6.jpg'
+
+// import Weather from 'react-tencent-weather';
+
 // 引入头像
 import userImage from '../../assets/images/user.png'
 
@@ -36,6 +33,7 @@ import Hottest from '../../components/Hottest';
 // 引入文章展示的模板
 import ArticleFormat from '../../components/ArticleFormat';
 import FooterPart from '../../components/FooterPart';
+import axios from 'axios';
 const { Header, Content } = Layout;
 export default function Home() {
 
@@ -52,6 +50,7 @@ export default function Home() {
   // 存储页码
   const [page,setPage]=useState(1)
 
+  const allComment=useSelector(state=>state.comments)
 
   useEffect(()=>{
     window.scrollTo(0, 0);
@@ -76,7 +75,13 @@ export default function Home() {
           // setArticles(res.data.result)
         }
       })
-      
+ 
+
+      // 2.获得ip方法2(通过script标签形式表示---不太会)
+      // axios('/api8/ipJson.jsp').then(res=>{
+      //   console.log(res.data);
+      // })
+
   },[page])//eslint-disable-line
 
   function changePage(page){
@@ -89,9 +94,9 @@ export default function Home() {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true, 
-    speed: 2500,
-    autoplaySpeed: 2500,
-    // cssEase: "linear"
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear"
   };
   // 返回顶部设置
   const style = {
@@ -137,6 +142,7 @@ export default function Home() {
               <div className="title">
                 
                   没有伞的孩子，必须努力奔跑！
+                  
               </div>
               <div className="guide"  onClick={()=>scrollToAnchor("components-anchor-demo-basic", true)}>
 
@@ -146,14 +152,15 @@ export default function Home() {
                   
               </div>
         </Header>
-
+        
         <div className="mainContent">
           {/* 内容区域 */}  
           <Content id="components-anchor-demo-basic">
+          
               <Card className='articleRecommend'  style={{ width: 1200 }}>
                 <div className="recommendNew">
                     <span className='icon'><LikeOutlined /></span>
-                    <span className='text'>最新说说</span>
+                    <span className='text'>文章推荐</span>
                 </div>
                 <div className="swipper">
                       <Slider {...settings}>
@@ -187,17 +194,20 @@ export default function Home() {
                         <span className='text'>最新文章</span>
                   </div> */}
                   
-                  <ArticleFormat articlesData={articleTime} articleView={articleView}></ArticleFormat>    
+                  <ArticleFormat articlesData={articleTime} articleView={articleView} allComment={allComment}></ArticleFormat>    
                   <Pagination onChange={changePage}  total={allReduxArticles.length}  pageSize={5}/>
+
+                  {/* 两个侧边栏 */}
+                 <SliderRight></SliderRight>
+                 <div className="hootpart">
+                 <Hottest articleView={articleView} getArticleSwipper={getArticleSwipper} ></Hottest> 
+                 </div>
               </Card>
 
-                <SliderRight></SliderRight>
-                  <div className="hootpart">
-                    <Hottest articleView={articleView} getArticleSwipper={getArticleSwipper} ></Hottest> 
-                  </div>
-              <div className="timeLine">
-                {/* <TimeLine></TimeLine> */}
-              </div>
+             
+             
+              
+            
           </Content>
 
           {/* 底部区域 */}

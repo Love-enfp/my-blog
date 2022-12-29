@@ -64,7 +64,7 @@ export default function Echarts(props) {
   }
  
   function switchEchartsData(keys,values){
-    console.log(keys,values);
+    // console.log(keys,values);
     let res=[]
     res= keys.map((item,index)=>{
       return (
@@ -74,7 +74,7 @@ export default function Echarts(props) {
         }
       )
     })
-    console.log(res);
+    // console.log(res);
     return res
   }
   // 基于准备好的dom，初始化echarts实例

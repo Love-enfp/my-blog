@@ -25,22 +25,39 @@
             height: 100%;   
             // display: flex;
             .contentImg{
+                padding-right: 1vw;
+                margin-left: 10px;
                 float: right;
                 img{
-                    height: 250px;
-                    width: 260px;
+                    height: 19vw;
+                    width: 17vw;
                 }
             }
             .artileContent{
                 // height: 100%;
                 float: right;
-                width: 60%;
+                width: 24vw;
                 .content{
                     display: block;
-                    height:160px!important;
+                    height:151px!important;
                     // overflow: scroll;
                     font-size: 12px!important;
+                   /*第一步： 溢出隐藏 */
                     overflow: hidden;
+                    /* 第二步：让文本不会换行， 在同一行继续 */
+                    // white-space: nowrap;
+                    /* 第三步：用省略号来代表未显示完的文本 */
+                    text-overflow: ellipsis;
+                    h1,h2,h3,h4,h5,h6{
+                        font-size: 12px;
+                        margin-bottom: 0!important;
+                    }
+                    p,ul,ol,li{
+                        margin-bottom: 0!important;
+                    }
+                    img{
+                        display: none   ;
+                    }
                 }
                 .readMore{
                     margin: 0 auto;
@@ -65,7 +82,7 @@
                     display: flex;
                     justify-content: space-around;
                     margin-top:1px ;
-                    width: 80%;
+                    width: 100%;
                     
                     img{
                         width: 45px;
@@ -76,10 +93,16 @@
                         font-size: 17px;
                         line-height: 45px;
                         span{
+                            color:rgb(21, 0, 255)
+                        }
+                    }
+                    .commentNum{
+                        font-size: 17px;
+                        line-height: 45px;
+                        span{
                             color:rgb(255, 85, 0)
                         }
                     }
-                    
                     .data{
                         line-height: 45px;
                     }
@@ -128,39 +151,80 @@
 //     background   :#04bac0;
 // }
 /*  内部滚动条样式 ----- end*/
-@media screen and (max-width: 600px) {
-        .articles .title{
-            font-size: 20px!important;
-        }
-        .articles .ant-card{
-            width: 83vw !important;
-            height: 520px !important
-        }
-        .articles .ant-card .ant-card-body{
-            display: block!important;
-            width: 83vw!important;
+
+@media  (min-width: 850px) and (max-width: 1210px) {
+    .articles{
+        .ant-card-body{
+            padding: 0;
             .contentImg{
-                float: left;
+                // margin-top: 30px;
                 img{
-                    height: 180px;
-                    width: 100%;
+                    height: 25vw!important;
+                    width: 20vw!important;
+
                 }
             }
-            .artileContent{
-                display: block;
-                width: 100%;
-                float: none;
-               .content{
-                height: 97px !important
-               }
-               .articleDeatil{
-                width: 100%;
-               }
+            .articleDeatil{
+                .userInfo{
+                    display: none;
+                }
+                
             }
+            
+        }
+    }
+    
+}
+@media  (min-width: 700px) and (max-width: 850px){
+    .articles{
+        .ant-card-body{
+            padding: 0;
             .contentImg{
-                float: none;
+                display: none;
+            }
+            .artileContent{
+                float: none!important;
+                width: 40vw!important;
             }
         }
+    }
+    .data{
+        display: none;
+    }
+}
+@media screen and (max-width: 700px) {
+    .articles .title{
+        font-size: 20px!important;
+    }
+    .articles .ant-card{
+        width: 83vw !important;
+        height: 520px !important
+    }
+    .articles .ant-card .ant-card-body{
+        display: block!important;
+        width: 83vw!important;
+        .contentImg{
+            float: left;
+            img{
+                height: 180px;
+                width: 100%;
+            }
+        }
+        .artileContent{
+            display: block;
+            width: 100%;
+            float: none;
+           .content{
+            height: 97px !important
+           }
+           .articleDeatil{
+            width: 102%;
+           }
+        }
+        .contentImg{
+            float: none;
+        }
+    }
 
- 
+
 }

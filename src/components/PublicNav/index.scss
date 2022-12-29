@@ -83,7 +83,7 @@
 //         }
 //   }
 // }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 
     #rc-menu-uuid-85708-14-rc-menu-more-popup{
         display: block;
@@ -93,6 +93,8 @@
 
     .ant-menu-item{
         height: 27px!important;
+        padding: 0 22px!important;
+        width: 14vw!important;
     }
     .ant-menu-item:not(:last-child){
         margin-bottom: 0!important;
@@ -106,7 +108,8 @@
             // margin-right: 120px;
             ul{
                 display: flex;   
-                width: 95vw;
+                width: 110vw;
+                margin-left: -20px;
             }
             .ant-menu-item-selected{
                 font-size: 12px!important;
@@ -132,10 +135,13 @@
                 width: 7vw;
                 margin-right: 0;
                 font-size: 12px;
-                padding-left: 20px;
+                padding-left: 18px;
+            }
+            .ant-menu-overflow-item:nth-child(6){
+                padding-left: 18px!important;
             }
             .ant-menu-overflow-item:nth-child(7){
-                padding-left: 45px;
+                padding-left: 28px!important;
             }
         }
         .userImage{
@@ -166,7 +172,7 @@
         }
     }
     .nav .mask{
-        margin-top: 40px;
+        margin-top: 43px;
         z-index: 5;
         span
         svg{
@@ -182,6 +188,7 @@
     .maskSlider{
         
         .slidertight2{
+            // overflow: scroll;
             .userInfoSlider{
                 width: 55vw!important;
                 // margin-top: 50px!important;
@@ -216,6 +223,36 @@
                                 font-size: 15px;
                             }
                         }
+                        .visitorinfo{
+                            .title{
+                                font-size: 14px!important;
+                            }
+                            .info{
+                                color: rgb(130, 134, 137);
+                                font-size: 12px!important;
+                            }
+                            .weather{
+                                .title{
+                                    span{
+                
+                                    }
+                                }
+                                .weatheritem{
+                                    font-size: 12px!important;
+                                    .degree{
+                                        color: blue;
+                                        margin-left: 10px;
+                                    }
+                                    .status{
+                                        color: orange;
+                                        margin-left: 10px;
+                                    }
+                                    .wind{
+                                        margin-left: 10px;
+                                    }
+                                }
+                            }
+                        }
                      }
 
                 }
@@ -224,7 +261,7 @@
                 overflow:scroll;
                 height: 420px;
                 width: 55vw!important;
-                top: 240px!important;
+                top: 620px!important;
                 margin-left: 0!important;
                 box-shadow: none!important;
                 .top{
@@ -271,4 +308,19 @@
     
     
    
+}
+@media  (min-width: 700px) and (max-width: 850px){
+    .nav{
+        .ant-menu-item-selected{
+            font-size: 20px!important;
+        }
+        .ant-menu-overflow-item {
+            margin-right: 0!important;
+            font-size: 20px!important;
+
+        }
+        .mask{
+            display: none;
+        }
+    }
 }

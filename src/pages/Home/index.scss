@@ -130,6 +130,12 @@
                             text-align: center;
                             line-height: 40px;
                             border-radius: 5%;
+                             /*第一步： 溢出隐藏 */
+                            overflow: hidden;
+                            /* 第二步：让文本不会换行， 在同一行继续 */
+                            white-space: nowrap;
+                            /* 第三步：用省略号来代表未显示完的文本 */
+                            text-overflow: ellipsis;
                         }
                     }
                  }
@@ -143,6 +149,7 @@
             /*滚动条整体样式*/
             width : 6px;  /*高宽分别对应横竖滚动条的尺寸*/
             height: 1px;
+
             }
             /*滚动条里面小方块*/
             .ant-card-body::-webkit-scrollbar-thumb {
@@ -172,10 +179,23 @@
                 background   :#04bac0;
             }
             /*  内部滚动条样式 ----- end*/
-    
+            
+            // 父标签是margin撑开的，所以区域为中间部分，所以得要对slidergitht调整下，后期需要改成padding会好点
+            .slidertight{
+                top: 2%;
+                right: -47%;
+                z-index: 5;
+            }
+            .hootpart{
+                .hottst{
+                    top: 2%;
+                    left: -50%;
+                    z-index: 5;
+                }
+            }
            }
            
-           
+          
     
           
           .timeLine{
@@ -224,7 +244,7 @@
   
     
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 
     .home .ant-layout-header{
         padding: 0;
@@ -254,14 +274,28 @@
             }
         }
         .swipper .img img{
+            width: 88%;
+            height: 95%;
+            text-align: center;
+            line-height: 80%;
+            margin-left: 6%;
+        }
+        .swipper .img{
             width: 30vw;
             height: 32vw;
         }
+    
         .swipper .img .text{
-            margin-left: 0;
-            width: 100%;
+            margin-left: 7px;
+            width: 93%;
             font-size: 12px;
             height: 36px;
+             /*第一步： 溢出隐藏 */
+            overflow: hidden;
+            /* 第二步：让文本不会换行， 在同一行继续 */
+            white-space: nowrap;
+            /* 第三步：用省略号来代表未显示完的文本 */
+            text-overflow: ellipsis;
         }
     }
     .home .mainContent .ant-layout-content .articleNew{

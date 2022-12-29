@@ -64,13 +64,13 @@
         text-align: center;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 
    
   
   
     .footer{
-        height: 65vw;
+        height: 67vw;
         ul{
             height: 150px;
             .first{
@@ -98,7 +98,7 @@
         }
     }
     .home .ant-back-top{
-        right: 2%;
+        right: 5%;
         width: 20px!important;
     }
 }

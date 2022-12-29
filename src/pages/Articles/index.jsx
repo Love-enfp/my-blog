@@ -16,7 +16,7 @@ import { Card, Layout ,Modal ,Popover } from 'antd'
 // 引入头像
 import userImage from '../../assets/images/user.png'
 import PublicNav from '../../components/PublicNav'
-import {AlertOutlined,EditFilled, AppstoreOutlined,MoneyCollectFilled,EyeOutlined,LikeOutlined,CarryOutOutlined,DislikeOutlined} from '@ant-design/icons';
+import {AlertOutlined,EditFilled, MessageOutlined,AppstoreOutlined,MoneyCollectFilled,EyeOutlined,LikeOutlined,CarryOutOutlined,DislikeOutlined} from '@ant-design/icons';
 import Comment from '../../components/Comment'
 // 引入格式化时间
 import {dateFormatter} from '../../utils/dateFormat'
@@ -41,6 +41,9 @@ export default function Articles() {
 
   const [res,setRes]=useState([])
 
+  // 当前文章评论数量
+  const [commentNum,setCommentNum]=useState()
+
   // 存储所有标签
   const [label,setLabel]=useState([])
   // 存储所有分类
@@ -60,6 +63,7 @@ export default function Articles() {
   const {id}=useParams()
   // console.log(id);  
   useEffect(()=>{
+    // console.log(res);
         window.scrollTo(0, 0);
           // 获得当前id页面的文章数据
          let obj= articles.filter((item)=>{
@@ -120,6 +124,10 @@ export default function Articles() {
     </div>
   );
 
+    // 当前文章的评论数量
+  function getCommentNum(data){
+    setCommentNum(data)
+  }
   return (
     <div className='articlePage'>
       <Layout>
@@ -150,9 +158,9 @@ export default function Articles() {
                                     <LikeOutlined />
                                         <span>{item.like}</span>
                                     </div>
-                                    <div className="dislike">
-                                      <DislikeOutlined />
-                                        <span>{item.dislike}</span>
+                                    <div className="commentNum">
+                                     <MessageOutlined />
+                                        <span>{commentNum?commentNum:'0'}</span>
                                     </div>
                                     <div className="views">
                                        <EyeOutlined /><span>{currentView}</span>
@@ -235,7 +243,7 @@ export default function Articles() {
             </div>
           </Card>
           <div className="comment">
-            <Comment data={id}></Comment>
+            <Comment data={id} getCommentNum={getCommentNum}></Comment>
           </div>
         </Content>
         <FooterPart></FooterPart>

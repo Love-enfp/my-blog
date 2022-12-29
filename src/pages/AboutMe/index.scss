@@ -11,8 +11,10 @@
                 .screen{
                     margin: 0 auto;
                     // border: 1px solid orange;
-                    width: 60%;
+                    width: 55%;
                     height: 300px;
+                   
+                    
                 }
                 .bullet{
                     .title{
@@ -51,6 +53,7 @@
                 }
                 .right{
                     float: left;
+                    font-weight: normal;
                     margin-left: 50px;
                     ul{
                         list-style: none;
@@ -73,6 +76,20 @@
                     font-size: 20px;
                 }
             }
+            .skill{
+                h1{
+                    font-size: 30px;
+                    span{
+                        color: orange;
+                        margin-right: 5px;
+                    }
+                }
+                ul{
+                    margin-left: 30px;
+                    list-style: none;
+                    font-size: 20px;
+                }
+            }
             .goal{
                 margin-top: 50px;
                 h1{
@@ -92,8 +109,19 @@
             }
         }
     }
+    .highlight{
+        font-weight: 500;
+        color: orange;
+    }
+    .greast{
+        font-weight: 700;
+        color: red;
+    }
+    .iconab{
+        color: rgb(254, 207, 0);
+    }
 }
-@media screen and (max-width: 600px){
+@media screen and (max-width: 700px){
     .aboutmecontnet{
         margin: 0 auto;
         width: 90vw!important;
@@ -101,16 +129,16 @@
            
             height: 50vw;
             .screen{
-                width: 70vw!important;
+                width: 50vw!important;
                 height: 50vw!important;
                 div{
                     .bullet-head{
                         margin-left: 33px;
-                        width: 7vw!important;
-                        height: 7vw!important;
+                        width: 5vw!important;
+                        height: 5vw!important;
                         img{
-                            width: 7vw!important;
-                             height: 7vw!important;
+                            width: 5vw!important;
+                             height: 5vw!important;
                         }
                     }
                     .bullet-msg{
@@ -140,9 +168,9 @@
             font-size: 18px!important;
         }
         .userInfo{
-            height: 80vw!important;
+            height: 65vw!important;
             .left{
-                width: 35vw;
+                width: 31vw;
                 img{
                     width: 25vw!important;
                     height: 25vw!important;
@@ -162,6 +190,11 @@
                 font-size: 14px!important;
             }
         }
+        .skill{
+            ul{
+                font-size: 14px!important;
+            }
+        }
         .goal{
             margin-top: 30px!important;
             .content{
@@ -171,6 +204,21 @@
 
                 }
             }
+        }
+    }
+}
+@media  (min-width: 700px) and (max-width: 850px){
+    .aboutme{
+        .userInfo{
+            .right{
+                margin-left: 0!important;
+            }
+            .left{
+                width: 30vw;
+            }
+        }
+        .mylog{
+
         }
     }
 }

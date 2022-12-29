@@ -15,7 +15,7 @@ export default function BuildLog() {
 
   useEffect(()=>{
     api.getBuildLog().then(res=>{
-       console.log(res);
+      //  console.log(res);
        setBlogList(res.data.result)
     })
   },[])
@@ -51,7 +51,7 @@ export default function BuildLog() {
                       iconStyle={{ background: 'rgb(16, 204, 82)', color: '#fff' }}
                       // icon={<StarOutlined /> }
                     >
-                       <p>到头了，没有内容啦，感觉您看到这里</p>
+                       <p style={{fontWeight:500,fontSize:20}}>到头了，亲~</p>
                     </VerticalTimelineElement>
         <VerticalTimelineElement
           

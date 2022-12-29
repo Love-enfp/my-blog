@@ -6,7 +6,7 @@ export default function SliderRight() {
   return (
     <div className='slidertight'>
          <UserInfoSlider></UserInfoSlider>
-        <LabelSlider></LabelSlider>
+         <LabelSlider></LabelSlider>
     </div>
   )
 }

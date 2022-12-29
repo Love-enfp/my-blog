@@ -2,22 +2,16 @@
     position: absolute;
     top: 20%;
     right: 2%;
-    
-    // width: 500px;    
-    // height: 1000px;
-    // border: 1px solid red;
-    // @media not screen and (min-width: 500px) {
-    //     .left-content {
-    //       width: 70%;
-    //     }
-    //     .right-bar {
-    //       width: 25%;
-    //     }
-    //   }
-      
+  
    }
 
    @media screen and (max-width: 600px) {
+    .slidertight{
+        display: none;
+        border: 1px solid rgb(255, 0, 0);
+    }
+}
+@media  (min-width: 700px) and (max-width: 850px){
     .slidertight{
         display: none;
         border: 1px solid rgb(255, 0, 0);

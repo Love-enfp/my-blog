@@ -39,7 +39,7 @@
                 font-size: 11px;
                 span{
                     margin-right: 7px;
-                    color: red;
+                    // color: red;
                     font-weight: 700;
                     font-size: 18px;
                 }
@@ -54,10 +54,10 @@
                 }
                 .info{
                     color: rgba(95, 88, 79, 0.811);
-                    margin-left: 15px;
+                    // margin-left: 15px;
                     .hot{
                         // margin-right: 5px;
-                        margin-left: 30px;
+                        // margin-left: 30px;
                     }
                 }
             }
@@ -81,9 +81,15 @@
            
         }
         .ant-list-item:nth-child(2){
-            span{
+            .num{
                 color: rgb(255, 0, 0);
 
+            }
+            .hot{
+                span{
+                    padding-left: 5px;
+                    font-size: 13px;
+                }
             }
         }
         .ant-list-item:nth-child(3){
@@ -101,9 +107,15 @@
            
         }
         .ant-list-item:nth-child(3){
-            span{
+            .num{
                 color: rgb(250, 63, 63);
 
+            }
+            .hot{
+                span{
+                    padding-left: 5px;
+                    font-size: 13px;
+                }
             }
         }
         .ant-list-item:nth-child(4){
@@ -121,21 +133,39 @@
            
         }
         .ant-list-item:nth-child(4){
-            span{
+            .num{
                 color: rgb(250, 112, 112);
 
             }
+            .hot{
+                span{
+                    padding-left: 5px;
+                    font-size: 13px;
+                }
+            }
         }
         .ant-list-item:nth-child(5){
-            span{
+            .num{
                 color: rgb(255, 161, 161);
 
             }
+            .hot{
+                span{
+                    padding-left: 5px;
+                    font-size: 13px;
+                }
+            }
         }
         .ant-list-item:nth-child(6){
-            span{
+            .num{
                 color: rgb(250, 150, 150);
 
+            }
+            .hot{
+                span{
+                    padding-left: 5px;
+                    font-size: 13px;
+                }
             }
         }
 }
@@ -148,3 +178,9 @@
 //     }
    
 // }
+@media  (min-width: 700px) and (max-width: 850px){
+    .hottst{
+        display: none;
+        border: 1px solid rgb(255, 0, 0);
+    }
+}

@@ -1,7 +1,7 @@
 import { Avatar, List ,Card} from 'antd';
 import './index.scss'
 import {dateFormatter} from '../../utils/dateFormat'
-import {FireFilled,EditFilled, BarChartOutlined,MoneyCollectFilled,EyeOutlined,LikeOutlined,CarryOutOutlined,DislikeOutlined} from '@ant-design/icons';
+import {FireFilled,EditFilled, BarChartOutlined,MessageOutlined,EyeOutlined,LikeOutlined,CarryOutOutlined,DislikeOutlined} from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import React from 'react'
 import {NavLink} from 'react-router-dom'
@@ -10,9 +10,15 @@ import { useState } from 'react';
 import api from '../../api'
 export default function Hottest(props) {
   
-
+  const allComment=useSelector(state=>state.comments)
   const [articleView,setArticleView]=useState([])
 
+  function getCurrentCommentNum(id){
+    const res=allComment.filter(item=>{
+        return item.blog_id==id
+    })
+    return res.length
+  }
   useEffect(()=>{
 
     api.getArticlesView({page:1}).then(res=>{
@@ -55,13 +61,14 @@ export default function Hottest(props) {
                   <div className="title">
                     <div className="title">
                       <NavLink  to={`/article/${item.id}`}>
-                         <p><span>{index+1}</span>{item.title}</p>
+                         <p><span className='num'>{index+1}</span>{item.title}</p>
                       </NavLink>
                       
                     </div>
                   </div>
                   <div className="info">
-                    <p className="hot">{item.view}人阅读</p>
+                    <p className="hot">{item.view}人阅读  <MessageOutlined />{getCurrentCommentNum(item.id)}</p>
+                   
                     <p className="time">{dateFormatter(item.create_date,'yyyy-mm-dd HH:mm:ss')}</p>
                   </div>
                 

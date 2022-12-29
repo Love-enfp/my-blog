@@ -6,9 +6,9 @@
         position: relative;
         background-image: url('../../assets/images/buildlogbgc4webp.webp');
         
-        // background-size: 100% 100%;
+        // background-size: 100% 60%;
         // height: 500px;
-        margin-top: 20px;
+        // margin-top: 62px;
         .anticon-star{
             svg{
                 margin-left: -2px;
@@ -21,3 +21,15 @@
         }
     }
 }
+        
+@media screen and (max-width: 700px) {
+    .vertical-timeline{
+        background-image: url('../../assets/images/thread_0_20190728193719_s_71646_o_w_467_h_864_76372.webp')!important;
+        
+        // background-size: 100% 60%;
+        // height: 500px;
+        // margin-top: 62px;
+       
+    }
+    
+  }

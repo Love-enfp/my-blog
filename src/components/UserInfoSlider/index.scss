@@ -73,6 +73,60 @@
            }
            
         }
+        .visitorinfo{
+            .title{
+                font-size: 20px;
+            }
+            .info{
+                color: rgb(130, 134, 137);
+            }
+            .weather{
+                .title{
+                    span{
+                        color: aqua;
+                        font-size: 20px;
+                    }
+                }
+                .weatheritem{
+                    .degree{
+                        color: blue;
+                        margin-left: 10px;
+                    }
+                    .status{
+                        color: rgb(239, 65, 141);
+                        margin-left: 10px;
+                    }
+                    .wind{
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+        .loveword{
+            .title{
+                font-size: 20px;
+                span{
+                    color: rgb(255, 0, 166);
+                    font-size: 20px;
+                }
+            }
+            p{
+                color: orange;
+            }
+        }
+        .history{
+            .title{
+                font-size: 20px;
+                span{
+                    color: rgb(179, 0, 255);
+                    font-size: 20px;
+                }
+            }
+            p{
+                color: gray;
+            }
+        }
         
     }
+   
   }

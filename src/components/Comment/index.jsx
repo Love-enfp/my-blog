@@ -11,10 +11,13 @@ import { useRef } from 'react';
 import { dateFormatter } from '../../utils/dateFormat';
 import getMaxId from '../../utils/getMaxId'
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { initComment } from '../../redux/actions/comment';
 import { ReactEmojiEditor } from 'react-emotor'
 import { ReactEmojiShow } from 'react-emotor';
 const { TextArea } = Input;
 export default function Comment(props) {
+  const dispatch=useDispatch()
   const [maincontent,setMainContent]=useState('')
     // 创建ref用于接收编辑框组件的节点对象,
   const emotor = useRef();
@@ -62,7 +65,7 @@ const [replyInfo,setReplyInfo]=useState({})
         method:'get',
         url:'https://api.usuuu.com/qq/'+event.target.value
     }).then(res=>{
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data.code===200)
         {
             if(res.data.data.name==' ')
@@ -88,7 +91,8 @@ const [replyInfo,setReplyInfo]=useState({})
 
 
   useEffect(()=>{
-    // console.log(articleId);
+   
+
     api.getComments({page,articleId}).then(res=>{
         if(res.data.status===200)
         {
@@ -96,9 +100,9 @@ const [replyInfo,setReplyInfo]=useState({})
                 const arr=res.data.result.filter((item)=>{
                     return item.blog_id===articleId
                 })
-                console.log(arr);
+                // console.log(arr);
                 arr.sort((a,b)=>{return b.id-a.id})
-                console.log(arr);
+                // console.log(arr);
 
                 // 从所有的评论中获得当前文章的评论数据
                 const currentComments=res.data.allComment.filter((item)=>{
@@ -112,10 +116,34 @@ const [replyInfo,setReplyInfo]=useState({})
                 setCommentList(arr)
                 // 更新当前页面的评论回复数据
                 setCommentReply(res.data.reply)
-         
+
+                props.getCommentNum(currentComments.length)
+
+                dispatch(initComment(res.data.allComment))
         }
         
     })
+
+    if(localStorage.getItem('userinfo'))
+    {
+            let userinfo=JSON.parse(localStorage.getItem('userinfo')) 
+            // 从邮箱中获得qq
+            let email=userinfo.email
+            var tag = email.indexOf("@")
+            let qq=email.slice(0, tag);
+            // console.log(qq);
+            // 回显评论区用户数据
+            
+            form.current.setFieldsValue({
+                nick:userinfo.nick,
+                email:userinfo.email,
+                QQ:qq,
+                // avatar:"https://q1.qlogo.cn/g?b=qq&nk=1553857505&s=100",
+            })
+            setqqImage(userinfo.avatar)
+    }
+    
+    
   },[page,refresh])//eslint-disable-line
   //当更改页码和上传评论后，，就刷新页面，重新渲染
 
@@ -178,21 +206,22 @@ const [replyInfo,setReplyInfo]=useState({})
     {
 
     
-            console.log('内容为',maincontent);
+            // console.log('内容为',maincontent);
             
-            console.log(value);
+            // console.log(value);
             // 通过moment获得当前时间
             let currentTime=moment().format('YYYY-MM-DD HH:mm:ss')
-            const {nick,content,avatar}=value
+            const {nick}=value
             // console.log(nick,content,avatar,qqImage);
             let params={}
             // console.log(allArticleComment.length*1+1);
+            
             if(replyid==-1&&replyEndid==-1)
             {
-                console.log(allArticleComment);
+                // console.log(allArticleComment);
                 params={
                     id:allArticleComment.length===0 ? 0 : (getMaxId(allArticleComment)+1),
-                    nick:qqUserInfo.name?qqUserInfo.name:nick,
+                    nick:qqUserInfo.name?qqUserInfo.name:value.nick,
                     email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                     content:maincontent,
                     avatar:qqImage,
@@ -201,8 +230,20 @@ const [replyInfo,setReplyInfo]=useState({})
                     parent_id:0,//注意，用0表示是一级评论，不是二级,
                     origin_id:0
                 }
-                console.log('提交的评论信息是',params);
+                // console.log(getMaxId(allArticleComment));
+                // console.log('提交的评论信息是',params);
+                // 一级评论同样需要邮箱提醒博主,那固定回复对象就是博主啦！
+            const email="1553857505@qq.com"
+            const nick=value.nick
+            let dataParams={
+                email,
+                nick,
+            }
+            // console.log('传递的消息是',dataParams);
 
+            api.submitEmail(dataParams).then((res)=>{
+                // console.log(res.data);
+            })
             }
             else if(flag==0&&replyid!==-1){
                 params={
@@ -235,6 +276,7 @@ const [replyInfo,setReplyInfo]=useState({})
                 
                 // console.log('三级评论提交的是',replyEndid,params);
             }
+            // 当点击回复的时候
             if(replyid!==-1||replyEndid!==-1){
                 const {email}=replyInfo
                 const {nick}=params
@@ -248,8 +290,25 @@ const [replyInfo,setReplyInfo]=useState({})
                     // console.log(res.data);
                 })
             }
-            console.log('提交的评论信息是',params);
-            // console.log(getMaxId(allArticleComment));
+            // console.log('提交的评论信息是',params);
+
+            // 个人信息已经存在
+            if(localStorage.getItem('userinfo')){
+               localStorage.removeItem('userinfo')//先删除原有信息
+            }
+            // 将新的个人信息存储大到localsotrge中
+            const userinfo={
+                nick: params.nick,
+                qq:qqUserInfo.qq,
+                email:params.email,
+                avatar:params.avatar
+            }
+            // localStorage中存入 JSON 对象，需先转换成 JSON 字符串，再写入，在读取时再转换成 JSON 对象：（否则会报错）
+             localStorage.setItem('userinfo',JSON.stringify(userinfo) )
+             localStorage.setItem('username',JSON.stringify(userinfo.nick) )
+
+
+            // console.log(getMaxId(allArtircleComment));
             api.submitComment(params).then(res=>{
                 if(res.data.status===200)
                 {
@@ -257,14 +316,14 @@ const [replyInfo,setReplyInfo]=useState({})
                     message.success("评论成功！ ！")
                     // 清空表单数据
                     form.current.setFieldsValue({
-                        nick:'',
-                        email:'',
-                        QQ:'',
+                        // nick:'',
+                        // email:'',
+                        // QQ:'',
                         content:'',
-                        avatar:''
+                        // avatar:''
                     })
                     emotor.current.clean();
-                    setqqImage('https://pics5.baidu.com/feed/960a304e251f95cab3693a1b1509a238660952a0.jpeg?token=5d39e841d225ed2520ab17eaf7cea79a')
+                    // setqqImage('https://pics5.baidu.com/feed/960a304e251f95cab3693a1b1509a238660952a0.jpeg?token=5d39e841d225ed2520ab17eaf7cea79a')
                     // 关闭二级回复表单
                     setIsReply(false)
                     setsThirdRepl(false)
@@ -289,7 +348,7 @@ const [replyInfo,setReplyInfo]=useState({})
         temp=allArticleComment.filter(item=>{
             return item.id*1==origin_id*1
         })
-        console.log(temp);
+        // console.log(temp);
     }
     if(temp.length===1)
     {
@@ -318,7 +377,7 @@ const [replyInfo,setReplyInfo]=useState({})
                 {
                     // 如果头像是默认的，说明尚未评论或者评论成功，则不显示昵称
                     qqImage!=='https://pics5.baidu.com/feed/960a304e251f95cab3693a1b1509a238660952a0.jpeg?token=5d39e841d225ed2520ab17eaf7cea79a'?
-                    <span>***{qqUserInfo.name}***</span>:
+                    <span>***{qqUserInfo.name||JSON.parse(localStorage.getItem('username'))}***</span>:
                     ''
                 }
                 

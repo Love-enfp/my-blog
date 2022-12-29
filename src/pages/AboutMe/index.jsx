@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import BulletScreen from 'rc-bullets-ts';
 import { Layout ,Button,message,Rate} from 'antd';
 import PublicNav from '../../components/PublicNav';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined ,HomeOutlined,ToolOutlined,BulbOutlined,QqOutlined,CrownOutlined,SolutionOutlined,FireOutlined,TrophyOutlined,ConsoleSqlOutlined} from '@ant-design/icons';
 import moment from 'moment'
 import FooterPart from '../../components/FooterPart';
 import './index.scss'
 import api from '../../api';
 // 引入头像
 import userImage from '../../assets/images/user.png'
+import axios from 'axios';
 const { Header,  Content } = Layout;
 
 const headUrlList=[
@@ -21,7 +22,13 @@ const headUrlList=[
   'https://pics2.baidu.com/feed/cb8065380cd7912300e088a7f462088ab3b780bb.jpeg@f_auto?token=f979c35dcd36559c87b6ec45ba64386b',
   'https://p.qqan.com/up/2022-1/16414338085639631.jpg',
   'http://pic.imeitou.com/uploads/allimg/220324/5-220324160035.jpg',
-  'http://pic.imeitou.com/uploads/allimg/220324/5-220324160020.jpg'
+  'https://img2.baidu.com/it/u=1305400789,18479608&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=572',
+  'https://img2.baidu.com/it/u=2149367406,675925699&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201706%2F11%2F20170611215719_JntVu.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1674903805&t=6e8cb4bad2b2ac92f76102a22d9d0941',
+  'https://img2.baidu.com/it/u=4261279350,2860328006&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=711',
+  'https://img2.baidu.com/it/u=902770571,2940695210&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889',
+  'https://img1.baidu.com/it/u=1100667011,3013260408&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800',
+  
 ]
 export default function AboutMe() {
   // 弹幕屏幕
@@ -62,7 +69,7 @@ export default function AboutMe() {
             i+=1
           }
           
-        },2500)
+        },3500)
       }
     })
     
@@ -143,7 +150,7 @@ export default function AboutMe() {
                 <ul>
                   <li>
                     <span className="before">
-                      姓名：
+                    <UserOutlined />姓名：
                     </span>
                     <span className="after">
                       王建功
@@ -151,7 +158,7 @@ export default function AboutMe() {
                   </li>
                   <li>
                     <span className="before">
-                      学历：
+                    <CrownOutlined />学历：
                     </span>
                     <span className="after">
                       硕士(在读)
@@ -159,7 +166,7 @@ export default function AboutMe() {
                   </li>
                   <li>
                     <span className="before">
-                      学校：
+                    <SolutionOutlined />学校：
                     </span>
                     <span className="after">
                       中南财经政法大学(ZUEL) CS
@@ -167,7 +174,7 @@ export default function AboutMe() {
                   </li>
                   <li>
                     <span className="before">
-                      QQ：
+                    <QqOutlined />QQ：
                     </span>
                     <span className="after">
                       1553857505
@@ -175,7 +182,7 @@ export default function AboutMe() {
                   </li>
                   <li>
                     <span className="before">
-                      爱好：
+                    <FireOutlined />爱好：
                     </span>
                     <span className="after">
                       篮球 健身
@@ -183,10 +190,18 @@ export default function AboutMe() {
                   </li>
                   <li>
                     <span className="before">
-                      偶像：
+                    <TrophyOutlined /> 偶像：
                     </span>
                     <span className="after">
                       Leborn James
+                    </span>
+                  </li>
+                  <li>
+                    <span className="before">
+                    <ConsoleSqlOutlined /> 未来目标：
+                    </span>
+                    <span className="after">
+                      优秀的前端开发工程师
                     </span>
                   </li>
 
@@ -195,19 +210,29 @@ export default function AboutMe() {
               
             </div>
             <div className="mylog">
-              <h1><span><UserOutlined /></span>关于本站</h1>
+              <h1><span><HomeOutlined /></span>关于本站</h1>
                 <p>
-                  &nbsp; &nbsp; &nbsp; &nbsp;本站是我在2022下半年搭建的第一个上线网站,从前台到后台，从部署到测试上线，学习到了很多知识，虽然中间遇到了很多问题，但是我从未
-                  说过放弃，我享受这个过程，因为坚持自己所热爱❤❤的事本身就是快乐的。<br />
-                  &nbsp; &nbsp; &nbsp; &nbsp;后面我会不断更新本站，记录自己的学习过程，见证自己的一点点进步(*^▽^*)<br />
-                  &nbsp; &nbsp; &nbsp; &nbsp;本站后续会不断完善，在访问过程中各位uu有任何的问题和建议非常欢迎提出来，我们可以一起交流喔，当然如有幸帮助一些人解疑答惑当然是更好的！ 
+                  &nbsp; &nbsp; &nbsp; &nbsp;本站是我在2022下半年搭建的一个上线网站,从<span className='highlight'>前台</span>到<span className='highlight'>后台</span>，从<span className='highlight'>部署</span>到<span className='highlight'>测试上线</span>，学习到了很多知识，由于是第一次<span className='highlight'>独自完成前后端</span>，所以中间也遇到了很多问题，但是我并没放弃，我享受这个过程，因为坚持自己所热爱❤❤的事本身就是快乐的。<br />
+                  &nbsp; &nbsp; &nbsp; &nbsp;本站主要是用于记录和整理个人的<span className='highlight'>生活趣事</span>以及<span className='highlight'>学习笔记</span>。<br />
+                  &nbsp; &nbsp; &nbsp; &nbsp;本站代码书写过程中有很多的不足，<span className='highlight'>后续会不断完善</span>，由于个人技术水平有限，在访问过程中各位uu有任何的问题和建议非常欢迎提出，我们可以一起交流！ 
                 </p>
             </div>
+            <div className="skill">
+              <h1><span><ToolOutlined /></span>开发技术</h1>
+                <ul>
+                  <li>前台和后台：<span className='highlight'>React18+Hooks+AntDesign+React-redux</span> </li>
+                  <li>后端：<span className='highlight'>Node+Exprss+Mysql</span> </li>
+                  <li>网站部署在<span className='highlight'>腾讯云服务器</span></li>
+                  <li>图片采用<span className='highlight'>阿里云OSS存储</span></li>
+                  <li>移动端适配主要通过<span className='highlight'>媒体查询完成</span></li>
+                  <li><a href="http://1.117.109.184:81/">后台页面</a>可以以通过游客身份进行访问</li>
+                </ul>
+            </div>
             <div className="goal">
-              <h1><span><UserOutlined /></span>小心愿~</h1>
+              <h1><span><BulbOutlined /></span>小心愿~</h1>
               <div className="content">
                 <div className='one'>
-                  <Rate disabled defaultValue={5} />&nbsp; &nbsp;enfp女孩顺利上岸!
+                  <Rate disabled defaultValue={5} />&nbsp; &nbsp;<span className='greast'>enfp女孩顺利上岸!</span> 
                 </div>
                 <div className='one'>
                   <Rate disabled  allowHalf defaultValue={4} />&nbsp; &nbsp;明年上半年找到满意的实习！

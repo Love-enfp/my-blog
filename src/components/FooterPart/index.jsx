@@ -57,6 +57,7 @@ export default function FooterPart() {
         </ul>
         <p>赣ICP备20004408号-1</p>
         <div>本站点已经开通：{result} (*๓´╰╯`๓)
+        {/* <a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JvIMaPaTHlmK4POR"><img src="https://sdk.51.la/icon/1-1.png"/></a> */}
         <span id="busuanzi_container_site_pv">| 总访问量 <i className="fa fa-spinner fa-spin"></i><span id="busuanzi_value_site_pv"></span> 次 </span>
 
         <span id="busuanzi_container_site_uv">| 总访客数 <i className="fa fa-spinner fa-spin"></i><span id="busuanzi_value_site_uv"></span> 人 </span>

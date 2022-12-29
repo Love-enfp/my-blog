@@ -23,17 +23,17 @@ export default function LeaveWords() {
     const [maincontent,setMainContent]=useState('')
     // 创建ref用于接收编辑框组件的节点对象,
     const emotor = useRef();
-    //发表评论后刷新页面
+    //发表留言后刷新页面
     const [refresh,setRefsh]=useState(false)
     //存储当前的页码值
     const [page,setPage]=useState(1)
     // 存储当前页码的留言
     const [messageList,setMessageList]=useState([])
-    // 存储当前页面评论的回复数据
+    // 存储当前页面留言的回复数据
     const [commentReply,setCommentReply]=useState([])
     // 存储所有的留言
     const [allMessagelist,setAllMessageList]=useState([])
-      // 记录当所有的评论的数量 
+      // 记录当所有的留言的数量 
      const [allCommentNum,setAllCommentNum] =useState(0)
     // 存储qq用户相关信息
     const [qqUserInfo,setqqUserInfo]=useState({})
@@ -65,9 +65,9 @@ const [replyInfo,setReplyInfo]=useState({})
       setAllMessageList(res.data.allMessage)
     //   更新当前页面的数据
       setMessageList(res.data.result)
-       // 更新当前页面的评论回复数据
+       // 更新当前页面的留言回复数据
        setCommentReply(res.data.reply)
-        //分页的总数，应该是一级评论的数量，所以这里取出一级评论 
+        //分页的总数，应该是一级留言的数量，所以这里取出一级留言 
        const parentReply=res.data.allMessage.filter(item=>{
         return item.parent_id==0
        })
@@ -75,6 +75,26 @@ const [replyInfo,setReplyInfo]=useState({})
        setAllCommentNum(parentReply)
     //    console.log(res.data.allMessage);
     })
+
+     if(localStorage.getItem('userinfo'))
+    {
+            let userinfo=JSON.parse(localStorage.getItem('userinfo')) 
+            // 从邮箱中获得qq
+            let email=userinfo.email
+            var tag = email.indexOf("@")
+            let qq=email.slice(0, tag);
+            // console.log(qq);
+            // 回显留言区用户数据
+            
+            form.current.setFieldsValue({
+                nick:userinfo.nick,
+                email:userinfo.email,
+                QQ:qq,
+                // avatar:"https://q1.qlogo.cn/g?b=qq&nk=1553857505&s=100",
+            })
+            setqqImage(userinfo.avatar)
+    }
+    
   },[refresh,page])
 
   function submitComment(value){
@@ -94,20 +114,31 @@ const [replyInfo,setReplyInfo]=useState({})
         {
             params={
                 id:allMessagelist.length===0 ? 0 : (getMaxId(allMessagelist)+1),
-                nick:qqUserInfo.name?qqUserInfo.name:nick,
+                nick:qqUserInfo.name?qqUserInfo.name:value.nick,
                 email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                 content:maincontent,
                 avatar:qqImage,
                 create_time:currentTime,
-                parent_id:0,//注意，用0表示是一级评论，不是二级,
+                parent_id:0,//注意，用0表示是一级留言，不是二级,
                 origin_id:0
             }
-            // console.log(params);
+            // 一级评论同样需要邮箱提醒博主,那固定回复对象就是博主啦！
+            const email="1553857505@qq.com"
+            const nick=value.nick
+            let dataParams={
+                email,
+                nick,
+            }
+            // console.log('传递的消息是',dataParams);
+
+            api.submitEmail(dataParams).then((res)=>{
+                // console.log(res.data);
+            })
         }
         else if(flag==0&&replyid!==-1){
             params={
                 id:allMessagelist.length===0 ? 0 : (getMaxId(allMessagelist)+1),
-                nick:qqUserInfo.name?qqUserInfo.name:nick,
+                nick:qqUserInfo.name?qqUserInfo.name:value.nick,
                 email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                 content:maincontent,
                 avatar:qqImage,
@@ -115,14 +146,13 @@ const [replyInfo,setReplyInfo]=useState({})
                 parent_id:replyid,
                 origin_id:0
             }
-            console.log('二级评论提交的是',replyid,params);
-            
+
         }
         else if(flag==1&&replyEndid!==-1)
         {
             params={
                 id:allMessagelist.length===0 ? 0 : (getMaxId(allMessagelist)+1),
-                nick:qqUserInfo.name?qqUserInfo.name:nick,
+                nick:qqUserInfo.name?qqUserInfo.name:value.nick,
                 email:qqUserInfo.qq?qqUserInfo.qq+"@qq.com":value.email,
                 content:maincontent,
                 avatar:qqImage,
@@ -131,21 +161,37 @@ const [replyInfo,setReplyInfo]=useState({})
                 origin_id:originId,
             }
             
-            console.log('三级评论提交的是',replyEndid,params);
+            // console.log('三级留言提交的是',replyEndid,params);
         }
         if(replyid!==-1||replyEndid!==-1){
-            console.log('@@',replyInfo);
+            // console.log('@@',replyInfo);
             const {email}=replyInfo
             const {nick}=params
             let dataParams={
                 email,
-                nick
+                nick,
             }
-            console.log("邮箱的回复",dataParams);
+            // console.log("邮箱的回复",dataParams);
             api.submitEmail(dataParams).then((res)=>{
             })
         }
-        console.log('提交的评论',params);
+        // console.log('提交的留言',params);
+
+    // 个人信息已经存在
+    if(localStorage.getItem('userinfo')){
+        localStorage.removeItem('userinfo')//先删除原有信息
+    }
+    // 将新的个人信息存储大到localsotrge中
+    const userinfo={
+        nick: params.nick,
+        qq:qqUserInfo.qq,
+        email:params.email,
+        avatar:params.avatar
+    }
+    // localStorage中存入 JSON 对象，需先转换成 JSON 字符串，再写入，在读取时再转换成 JSON 对象：（否则会报错）
+        localStorage.setItem('userinfo',JSON.stringify(userinfo) )
+        localStorage.setItem('username',JSON.stringify(userinfo.nick) )
+
         api.submitMessage(params).then(res=>{
             if(res.data.status===200)
             {
@@ -153,16 +199,16 @@ const [replyInfo,setReplyInfo]=useState({})
                 message.success("留言成功！ ！")
                 // 清空表单数据
                 form.current.setFieldsValue({
-                    nick:'',
-                    email:'',
-                    QQ:'',
+                    // nick:'',
+                    // email:'',
+                    // QQ:'',
                     content:'',
-                    avatar:''
+                    // avatar:''
                 })
                 // console.log(maincontent);
                 emotor.current.clean();
                 // setMainContent(' gg')
-                setqqImage('https://pics5.baidu.com/feed/960a304e251f95cab3693a1b1509a238660952a0.jpeg?token=5d39e841d225ed2520ab17eaf7cea79a')
+                // setqqImage('https://pics5.baidu.com/feed/960a304e251f95cab3693a1b1509a238660952a0.jpeg?token=5d39e841d225ed2520ab17eaf7cea79a')
                 // 关闭二级回复表单
                 setIsReply(false)
                 setsThirdRepl(false)
@@ -201,7 +247,8 @@ function getOriginIdNick(origin_id){
         url:'https://api.usuuu.com/qq/'+event.target.value
      }).then(res=>{
         if(res.data.code===200)
-        {console.log(122222222);
+        {
+            // console.log(122222222);
             // 更新qq相关信息
             setqqUserInfo(res.data.data)
             // 自动填充邮箱
@@ -213,7 +260,7 @@ function getOriginIdNick(origin_id){
             setqqImage(res.data.data.avatar)
         }
         else{
-            console.log(111111111);
+            // console.log(111111111);
                 message.error('qq号输入错误！请重试')
         }
     })
@@ -222,32 +269,32 @@ function getOriginIdNick(origin_id){
   function changePage(page){
     setPage(page)
   }
-/* 点击的是一级评论，准备发布二级评论 */
+/* 点击的是一级留言，准备发布二级留言 */
 function submitReply(item){
     // console.log('%%%%',item);
     const {id}=item
-    console.log('当前评论的Id是',id,item);
+    // console.log('当前留言的Id是',id,item);
     setIsReply(true)
     setReplyId(id)
     setFlag(0)
     setReplyInfo(item)
     scrollToAnchor("menuList", true)
   }
-  /* 点击的是二级评论，准备发布三级评论 */
+  /* 点击的是二级留言，准备发布三级留言 */
   function submitTwodReply(item){
     const {id}=item
-    // console.log('当前评论的Id是',id,item);
+    // console.log('当前留言的Id是',id,item);
     setsThirdRepl(true)
     setReplyEndid(id)
     setFlag(1)
     setReplyInfo(item)
     scrollToAnchor("menuList", true)
   }
-  /* 点击的是三级评论，准备发布三级评论 */
+  /* 点击的是三级留言，准备发布三级留言 */
   function submitThirdReply(item,i){
     // console.log(i);
     const {id,parent_id}=item
-    // console.log('当前评论的Id是',parent_id,item);
+    // console.log('当前留言的Id是',parent_id,item);
     setsThirdRepl(true)
     setReplyEndid(id)
     setFlag(1)
@@ -283,16 +330,16 @@ function contentOnChange(content) {
             
         <Card className='messageMenu' id="menuList">
             <div className="help">
-                <p>您可以选择两种方式进行评论哟：</p>
+                <p>您可以选择两种方式进行留言哟：</p>
                 <p><StarOutlined className='icon'/>1.直接输入<span>qq号</span> ，获得昵称、邮箱、头像</p>
                 <p><StarOutlined className='icon'/>2.忽略qq,直接输入自定义的<span>昵称</span>和真实的<span>qq邮箱</span></p>
-                <p><StarOutlined className='icon'/>注意：评论回复将通过<span>qq邮箱</span>提醒您哟</p>
+                <p><StarOutlined className='icon'/>注意：留言回复将通过<span>qq邮箱</span>提醒您哟</p>
             </div>
             <div className="nick">
                 {
-                    // 如果头像是默认的，说明尚未评论或者评论成功，则不显示昵称
+                    // 如果头像是默认的，说明尚未留言或者留言成功，则不显示昵称
                     qqImage!=='https://pics5.baidu.com/feed/960a304e251f95cab3693a1b1509a238660952a0.jpeg?token=5d39e841d225ed2520ab17eaf7cea79a'?
-                    <span>***{qqUserInfo.name}***</span>:
+                     <span>***{qqUserInfo.name||JSON.parse(localStorage.getItem('username'))}***</span>:
                     ''
                 }
                 
@@ -399,7 +446,7 @@ function contentOnChange(content) {
                     messageList.map((item,index)=>{
                         return (
                             <div className="commentandreply" key={index}>
-                                {/* 一级评论区 */}
+                                {/* 一级留言区 */}
                                 <div className='commentOne' >
                                     <div className="left">
                                         <div className="img">
@@ -440,7 +487,7 @@ function contentOnChange(content) {
                                                 return(
                                                         i.parent_id===item.id?
                                                         (
-                                                            /* 二级评论区 */
+                                                            /* 二级留言区 */
                                                             <div className="twoandthird" key={j}>
                                                                 <div className='reply' >
                                                                         <div className="left">
@@ -472,7 +519,7 @@ function contentOnChange(content) {
                                                                             </div>
                                                                         </div>
                                                                 </div>
-                                                                {/* 三级评论区 */}
+                                                                {/* 三级留言区 */}
                                                                 <div className="thirdReply">
                                                                     {
                                                                         item.secondReply[j].thirdReply!==[]?
