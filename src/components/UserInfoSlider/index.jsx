@@ -40,14 +40,18 @@ export default function UserInfoSlider() {
         // console.log("***",res.data);
         // setIpInfoList(res.data)
         // })
-
+        https://api.uomg.com/
          // 1.获得ip方法2
          await  axios('/api13/api/ip/self?app_id=voplliljirrpnynl&app_secret=UUtNWDJuVWt6amtGdGlNL1JqQmVEdz09').then(res=>{
             city= res.data.data.city
-            // console.log("%%%%%%%%",res.data.data);
+            console.log("%%%%%%%%",res.data.data);
             setIpInfoList(res.data.data)
         })
-
+        // https://v.api.aa1.cn/api/myip/index.php?aa1=json
+        //   // 1.获得ip方法2
+        //   await  axios('/api19/api/myip/index.php?aa1=json').then(res=>{
+        //     console.log("%%%%%%%%",res);
+        // })
         // 2.获得天气情况（本地）
         axios(`/api11/weather03/api/weatherService/getDailyWeather?cityName=${city}`).then(res=>{
         // console.log("---",res.data.results[0]);

@@ -22,7 +22,11 @@ module.exports = function (app) {
             changeOrigin: true,
             pathRewrite: {'^/api17': '' }
         }),
-
-       
+        // createProxyMiddleware('/api19', { 
+        //     target: 'https://v.api.aa1.cn',
+        //     changeOrigin: true,
+        //     pathRewrite: {'^/api19': '' }
+        // }),
+        
     )
 }

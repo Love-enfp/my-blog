@@ -186,6 +186,10 @@
             }
         }
         .mylog{
+            margin-top: 70px;
+            h1{
+                font-size: 18px!important;
+            }
             p{
                 font-size: 14px!important;
             }
@@ -217,8 +221,27 @@
                 width: 30vw;
             }
         }
-        .mylog{
-
+       
+    }
+}
+@media screen and (max-width: 375px){
+    .userInfo{
+        height: 85vw!important;
+        .left{
+            // margin-left: 10vw;
+            width: 35vw!important;
+            img{
+                width: 25vw!important;
+                height: 25vw!important;
+            }
+        }
+        .right{
+            width: 90vw;
+        }
+    }
+    .mylog{
+        .right{
+            font-size: 12px;
         }
     }
 }

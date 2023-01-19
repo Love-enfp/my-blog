@@ -8,6 +8,7 @@ import { useState } from 'react'
 import {AppstoreOutlined,HomeOutlined,EditFilled,HighlightOutlined,HistoryOutlined, EditOutlined,PlayCircleOutlined,EyeOutlined,UnorderedListOutlined} from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SliderRight2 from '../../components/SliderRight2'
+import Hottest from '../Hottest'
 export default function PublicNav() {
   const {pathname}=useLocation()
   // 菜单项
@@ -81,36 +82,68 @@ export default function PublicNav() {
 
   const [open, setOpen] = useState(false);
   const [size, setSize] = useState();
+  const [open2, setOpen2] = useState(false);
+  const [size2, setSize2] = useState();
   const showDefaultDrawer = () => {
+    console.log(1);
     setSize('small');
     setOpen(true);
+  };
+  const showDefaultDrawer2 = () => {
+    console.log(2);
+    setSize2('small');
+    setOpen2(true);
   };
 
   const onClose = () => {
     setOpen(false);
+  };
+  const onClose2 = () => {
+    setOpen2(false);
   };
   return (
     <div className='nav'>
         
       
       <div className="mask">
-      <Space>
-        <span onClick={showDefaultDrawer}><UnorderedListOutlined></UnorderedListOutlined> </span>
-      </Space>
-      <Drawer
-        title={`${size} Drawer`}
-        placement="left"
-        size={size}
-        onClose={onClose}
-        open={open}
-        mask
-      >
-        <div className="maskSlider">
-          <SliderRight2></SliderRight2>
+          <Space>
+            <span onClick={showDefaultDrawer}><UnorderedListOutlined></UnorderedListOutlined> </span>
+          </Space>
+          <Drawer
+            title={`${size} Drawer`}
+            placement="left"
+            size={size}
+            onClose={onClose}
+            open={open}
+            mask
+            className="maskSlider"
+          >
+            <div>
+              <SliderRight2></SliderRight2>
+            </div>
+          </Drawer>
+      </div>
 
-        </div>
-      </Drawer>
-     
+      <div className="mask2">
+          <Space>
+            <span onClick={showDefaultDrawer2}><UnorderedListOutlined></UnorderedListOutlined> </span>
+          </Space>
+          <Drawer
+            title={`${size} Drawer`}
+            placement="right"
+            size={size2}
+            onClose={onClose2}
+            open={open2}
+            mask
+            className="maskSlider2"
+          >
+            <div>
+              <div className="mininav">
+                  
+              </div>
+              <Hottest></Hottest>
+            </div>
+          </Drawer>
       </div>
       
       {/* defaultOpenKeys={['/home']} defaultSelectedKeys={[pathname]}都是通过上面的key值进行匹配 */}

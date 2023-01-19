@@ -102,3 +102,10 @@
         width: 20px!important;
     }
 }
+@media screen and (max-width: 375px){
+    .footer{
+        .first{
+            display: none;
+        }
+    }
+}

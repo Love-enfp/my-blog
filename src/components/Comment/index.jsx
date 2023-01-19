@@ -235,9 +235,12 @@ const [replyInfo,setReplyInfo]=useState({})
                 // 一级评论同样需要邮箱提醒博主,那固定回复对象就是博主啦！
             const email="1553857505@qq.com"
             const nick=value.nick
+            let idw=articleId
             let dataParams={
                 email,
                 nick,
+                tag:'article',
+                id:`${idw}`
             }
             // console.log('传递的消息是',dataParams);
 
@@ -280,9 +283,13 @@ const [replyInfo,setReplyInfo]=useState({})
             if(replyid!==-1||replyEndid!==-1){
                 const {email}=replyInfo
                 const {nick}=params
+                
+                let idw=articleId
                 let dataParams={
                     email,
-                    nick
+                    nick,
+                    tag:'article',
+                    id:`${idw}`
                 }
                 // console.log('传递的消息是',dataParams);
 

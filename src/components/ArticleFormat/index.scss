@@ -193,6 +193,11 @@
     }
 }
 @media screen and (max-width: 700px) {
+    .articles .artileContent{
+        h1{
+            margin-bottom: 0!important;
+        }
+    }
     .articles .title{
         font-size: 20px!important;
     }
@@ -227,4 +232,16 @@
     }
 
 
+}
+@media screen and (max-width: 375px){
+    .articles .title{
+        height: 30px!important;
+        padding-left: 33%!important;
+        font-size: 16px!important;
+    }
+    .articles .artileContent{
+        h1{
+            margin-bottom: 0!important;
+        }
+    }
 }
