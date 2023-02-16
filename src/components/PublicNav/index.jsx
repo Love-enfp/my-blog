@@ -85,16 +85,13 @@ export default function PublicNav() {
   const [open2, setOpen2] = useState(false);
   const [size2, setSize2] = useState();
   const showDefaultDrawer = () => {
-    console.log(1);
     setSize('small');
     setOpen(true);
   };
   const showDefaultDrawer2 = () => {
-    console.log(2);
     setSize2('small');
     setOpen2(true);
   };
-
   const onClose = () => {
     setOpen(false);
   };
@@ -103,8 +100,6 @@ export default function PublicNav() {
   };
   return (
     <div className='nav'>
-        
-      
       <div className="mask">
           <Space>
             <span onClick={showDefaultDrawer}><UnorderedListOutlined></UnorderedListOutlined> </span>

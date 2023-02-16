@@ -2,16 +2,12 @@ import React, { useEffect, useState } from 'react';
 import BulletScreen from 'rc-bullets-ts';
 import { Layout ,Button,message,Rate} from 'antd';
 import PublicNav from '../../components/PublicNav';
+import FooterPart from '../../components/FooterPart';
 import { UserOutlined ,HomeOutlined,ToolOutlined,BulbOutlined,QqOutlined,CrownOutlined,SolutionOutlined,FireOutlined,TrophyOutlined,ConsoleSqlOutlined} from '@ant-design/icons';
 import moment from 'moment'
-import FooterPart from '../../components/FooterPart';
 import './index.scss'
 import api from '../../api';
-// 引入头像
-import userImage from '../../assets/images/user.png'
-import axios from 'axios';
 const { Header,  Content } = Layout;
-
 const headUrlList=[
   'https://pics5.baidu.com/feed/91529822720e0cf3076b2e9f413e2219bf09aab1.jpeg?token=9fa882676d8d5e144c7ad484eb91eaa0',
   'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13187151060%2F641&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670670062&t=a3e726a56b7852597f165a965248f171',
@@ -37,7 +33,6 @@ export default function AboutMe() {
   const [bullet, setBullet] = useState('');
   // 存储所有的弹幕
   const [bulletList,setBulletList]=useState([])
-
   // 通过moment获得当前时间
   let create_date=moment().format('YYYY-MM-DD HH:mm:ss')
   // 返回随机数
@@ -52,7 +47,7 @@ export default function AboutMe() {
       {
         setBulletList(res.data.result)
         // 给页面中某个元素初始化弹幕屏幕，一般为一个大区块。此处的配置项全局生效
-        let s = new BulletScreen('.screen',{duration:20});
+        let s = new BulletScreen('.screen',{duration:20});//duration动画持续时间
         // or
         // let s=new BulletScreen(document.querySelector('.screen));
         setScreen(s);
@@ -60,10 +55,8 @@ export default function AboutMe() {
         // 进入页面后显示所有的弹幕
         let i=0
         window.setInterval(()=>{
-          // console.log(1);
           if(i<res.data.result.length)
           {
-            // console.log(i);
             // 这里不用screen，因为useState异步性，此时screen还赋值完成
             s.push({msg:res.data.result[i].content ,head:headUrlList[random()],color:"#eee" ,size:"middle", backgroundColor:"rgba(2,2,2,.3)"})
             i+=1
@@ -72,9 +65,6 @@ export default function AboutMe() {
         },3500)
       }
     })
-    
-    
-
   }, []);
   // 弹幕内容输入事件处理
   const handleChange = ({ target: { value } }) => {
@@ -135,14 +125,13 @@ export default function AboutMe() {
                 <input value={bullet} onChange={handleChange} />
                 <Button size='middle' type='primary' onClick={handleSend}>发送弹幕</Button>
               </div>
-              
             </div>
             <div className="userInfo">
               
               <h1><span><UserOutlined /></span>关于博主</h1>
               <div className="left">
                   <div className="userImg">
-                    <img src={userImage} alt="" />
+                    <img src='https://wjg-blog.oss-cn-shanghai.aliyuncs.com/static/usercompress.png' alt="" />
                   </div>
                   <div className='title'>"你不努力，谁也给不了你想要的生活！"</div>
               </div>
@@ -225,7 +214,7 @@ export default function AboutMe() {
                   <li>网站部署在<span className='highlight'>腾讯云服务器</span></li>
                   <li>图片采用<span className='highlight'>阿里云OSS存储</span></li>
                   <li>移动端适配主要通过<span className='highlight'>媒体查询完成</span></li>
-                  <li><a href="http://1.117.109.184:81/">后台页面</a>可以以通过游客身份进行访问</li>
+                  <li><a href="http://wjgblog.cn:81/">后台页面</a>可以以通过游客身份进行访问</li>
                 </ul>
             </div>
             <div className="goal">
@@ -250,7 +239,7 @@ export default function AboutMe() {
         <FooterPart></FooterPart>
         </Layout>
       </div>
-      
+      {/* </Suspense> */}
       
     </main>
   );

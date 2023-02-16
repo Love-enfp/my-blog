@@ -2,20 +2,21 @@ import React from 'react'
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import {StarOutlined} from '@ant-design/icons';
-import PublicNav from '../../components/PublicNav';
 import api from '../../api';
 import './index.scss'
 import { useEffect } from 'react';
 import {dateFormatter2} from '../../utils/dateFormat.js'
 import { useState } from 'react';
+import PublicNav from '../../components/PublicNav';
 import FooterPart from '../../components/FooterPart';
+
+
 export default function BuildLog() {
   
   const [blogList,setBlogList]=useState([])
 
   useEffect(()=>{
     api.getBuildLog().then(res=>{
-      //  console.log(res);
        setBlogList(res.data.result)
     })
   },[])
@@ -61,5 +62,6 @@ export default function BuildLog() {
       </VerticalTimeline>
         <FooterPart></FooterPart>
     </div>
+    // </Suspense>
   )
 }

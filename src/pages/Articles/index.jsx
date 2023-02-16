@@ -14,7 +14,6 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Card, Layout ,Modal ,Popover } from 'antd'
 // 引入头像
-import userImage from '../../assets/images/user.png'
 import PublicNav from '../../components/PublicNav'
 import {AlertOutlined,EditFilled, MessageOutlined,AppstoreOutlined,MoneyCollectFilled,EyeOutlined,LikeOutlined,CarryOutOutlined,DislikeOutlined} from '@ant-design/icons';
 import Comment from '../../components/Comment'
@@ -25,51 +24,49 @@ import SliderRight from '../../components/SliderRight'
 import FooterPart from '../../components/FooterPart'
 import WeChat from '../../assets/images/wechattip.png'
 import ZhiFuBao from '../../assets/images/zhifubao.png'
-import { useLocation } from 'react-router-dom'
 import api from '../../api'
-import { useRef } from 'react'
-
-const { Header, Footer, Content } = Layout;
+const { Header, Content } = Layout;
 
 export default function Articles() {
    
-  const commentRef=useRef()
   // 2. 生成实例对象
   // const md = new markdownIt()
 
   const dispatch=useDispatch()
-
+  // 存储当前页面的文章数据
   const [res,setRes]=useState([])
 
   // 当前文章评论数量
   const [commentNum,setCommentNum]=useState()
-
   // 存储所有标签
   const [label,setLabel]=useState([])
   // 存储所有分类
   const [sort,setSort]=useState([])
-  
   // 从redux中取出所有的文章数据
-  const articles=useSelector(state=>state.articles)
-
+  // const articles=useSelector(state=>state.articles)
+  const [articles,setArticles]=useState([])
   const [currentView,setCurrentView]=useState(0)
-
   /* 下面通过state方式传递，回报找不到id的错误！不知道为啥？ */
   // useLocation拿到传递过来的参数,没有用useParams（出现在地址栏）
   // const { state } = useLocation()
-
   // const id=state.id
-
   const {id}=useParams()
-  // console.log(id);  
+  // 存储页码
+  const [page,setPage]=useState(1)
   useEffect(()=>{
-    // console.log(res);
         window.scrollTo(0, 0);
           // 获得当前id页面的文章数据
-         let obj= articles.filter((item)=>{
-            return (id*1)===item.id//注意这里item.id是整型数值！！
+          api.getArticles({page}).then(res=>{
+            if(res.data.status===200)
+            {
+              // 将所有的文章存到中
+              setArticles(res.data.allArticles)
+              let obj= res.data.allArticles.filter((item)=>{
+                return (id*1)===item.id//注意这里item.id是整型数值！！
+              })
+              setRes(obj)
+            }
           })
-          setRes(obj)
           // 获得所有的文章标签数据
           api.getLabels().then(res=>{
             setLabel(res.data.result)
@@ -84,9 +81,7 @@ export default function Articles() {
             {
                 setCurrentView(res.data.result[0].view)
             }
-            
         })
-
         // 配置highlight
         hljs.configure({
           tabReplace: '',
@@ -114,9 +109,6 @@ export default function Articles() {
       content: '感谢您的点赞，Up主将继续努力分享更棒的文章！',
     });
   }
-  
-
-
   const content = (
     <div>
       <img src={WeChat} style={{width:200, height:180}} alt="" />
@@ -129,12 +121,12 @@ export default function Articles() {
     setCommentNum(data)
   }
   return (
+    // <Suspense fallback={<div>Loading...</div>}>
     <div className='articlePage'>
       <Layout>
         {/* 头部 */}
         <Header>
           <PublicNav></PublicNav>
-          
         </Header>
         <Content>
           <SliderRight></SliderRight>
@@ -147,7 +139,7 @@ export default function Articles() {
                          {/*  文章信息*/}
                          <div className="articleDeatil">
                                     <div className="userInfo">
-                                      <img src={userImage} alt="" />
+                                      <img src='https://wjg-blog.oss-cn-shanghai.aliyuncs.com/static/usercompress.png' alt="" />
                                       <span>{item.author}</span>
                                     </div>
                                     <div className="data">
@@ -178,7 +170,6 @@ export default function Articles() {
                           }}
                           // dangerouslySetInnerHTML={{__html:md.render(item.content)}}
                           >
-
                           {}
                          </p>
                          <div className="admire">
@@ -192,8 +183,6 @@ export default function Articles() {
                               <Link>
                                 <MoneyCollectFilled />
                               </Link>
-  
-             
                             </div>
                             </Popover>
                         </div>
@@ -209,18 +198,11 @@ export default function Articles() {
                   sort.map((item,index)=>
                     item.blog_id===(id*1)?
                      (
-                      // <link to="/sort" key={index}>
                         <Link to="/sort/sortArticles"  state={{item:item.name,sort:sort}} key={index}><span>#{item.name}</span></Link>
-                      // </link>
-                      // <a href="www.baidu.com" key={index}>
-                          
-                      //  </a>
                     ):
                     ''
                   )
-                }
-                 
-                  
+                }    
               </div>
               <div className="label">
                    <EditFilled></EditFilled>标签：
@@ -234,11 +216,7 @@ export default function Articles() {
                     ):
                     ''
                   )
-                }
-                   
-                   
-                  
-                  
+                }  
               </div>
             </div>
           </Card>
@@ -251,5 +229,6 @@ export default function Articles() {
        
        
     </div>
+    // </Suspense>
   )
 }

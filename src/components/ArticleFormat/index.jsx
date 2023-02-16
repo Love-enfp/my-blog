@@ -14,7 +14,7 @@ import { getColor } from '../../utils/random';
 // 引入时间格式
 import { dateFormatter } from '../../utils/dateFormat';
 // 引入用户头像
-import userImage from '../../assets/images/user.png'
+// import userImage from '../../assets/images/user.png'
 import api from '../../api';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -24,33 +24,17 @@ export default function ArticleFormat(props) {
 const md = new markdownIt()
 // 3. 解析markdown语法
 // const parse = (text) => setHtmlString(md.render(text));
-
   //获得父组件传递过来的文章数据
   const allComment=useSelector(state=>state.comments)
   const articles=props.articlesData
   const articleView=props.articleView
-//   console.log(allComment);
-  let flag=false
-
   const [list,setList]=useState([])
-    // console.log(articles);
-//   function newestList(){
-//     setList(articles)
-//   }
-  
-//  function hostestList(){
-//     setList(articleView)
-//     flag=true
-//   }
-//  
-
   // 点击阅读更多，即增加浏览量
   function handleViews(articleId){  
     api.increaseViews({id:articleId}).then(res=>{
     })
 
   }
-
   function getCurrentCommentNum(id){
     if(allComment)
     {
@@ -59,8 +43,6 @@ const md = new markdownIt()
         })
         return res.length
     }
-    
-  
   }
   useEffect(()=>{
     setList(articles)
@@ -87,7 +69,6 @@ const md = new markdownIt()
                             <div className="artileContent">
                                 <h1>{item.title}</h1>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                
                                 <div
                                  className='content'
                                 // 1.md.render用来解析markdown语法, 得到h1,,h2等html字符串
@@ -106,7 +87,7 @@ const md = new markdownIt()
                                 {/*  文章信息*/}
                                 <div className="articleDeatil">
                                     <div className="userInfo">
-                                        <img src={userImage} alt="" />
+                                        <img src='https://wjg-blog.oss-cn-shanghai.aliyuncs.com/static/usercompress.png' alt="" />
                                         <span>{item.author}</span>
                                     </div>
                                     <div className="data">

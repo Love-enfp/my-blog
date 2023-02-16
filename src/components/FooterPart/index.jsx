@@ -34,7 +34,7 @@ export default function FooterPart() {
             <li className='first'>
                 <h3><WhatsAppOutlined />联系我</h3>
                 <h2>qq:1553857505</h2>
-                <h2>phone:18625772195</h2>
+                <h2>phone:15660694944</h2>
                 <h2>E-mail:1553857505qq.com</h2>
                 
             </li>
@@ -49,10 +49,10 @@ export default function FooterPart() {
             <li className='message'>
                 <h3><HomeOutlined /> 小房子信息</h3>
                 
-                <h2>文章总数：1</h2>
-                <h2>访问总数：1</h2>
-                <h2>评论总数：1</h2>
-                <h2>留言总数：1</h2>
+                <h2>文章总数：13</h2>
+                <h2>访问总数：80</h2>
+                <h2>评论总数：13</h2>
+                <h2>留言总数：29</h2>
             </li>
         </ul>
         <p><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2023000367号</a></p>

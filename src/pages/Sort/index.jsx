@@ -11,10 +11,16 @@ import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import FooterPart from '../../components/FooterPart';
 import SliderRight2 from '../../components/SliderRight2';
-// import Echarts from '../../components/Echarts';
+import Echarts from '../../components/Echarts';
 import * as echarts from 'echarts';
 import { useRef } from 'react';
+
+import { lazy, Suspense } from 'react'
 const { Header,  Content } = Layout;
+// const FooterPart = lazy(() => import('../../components/FooterPart'))
+// const PublicNav = lazy(() => import('../../components/PublicNav'))
+// const SliderRight2 = lazy(() => import('../../components/SliderRight2'))
+
 export default function Sort() {
   
   const echartDom=useRef(null)
@@ -143,6 +149,7 @@ export default function Sort() {
   }
 }
   return (
+    // <Suspense fallback={<div>Loading...</div>}>
     <div className='allSorts'>
       <Layout>
         {/* 头部 */}
@@ -190,5 +197,6 @@ export default function Sort() {
         <FooterPart></FooterPart>
       </Layout>
     </div>
+    // </Suspense>
   )
 }

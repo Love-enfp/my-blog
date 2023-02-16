@@ -17,16 +17,16 @@ module.exports = function (app) {
             changeOrigin: true,
             pathRewrite: {'^/api16': '' }
         }),
-        createProxyMiddleware('/api17', { 
-            target: '  https://api.oick.cn/',
-            changeOrigin: true,
-            pathRewrite: {'^/api17': '' }
-        }),
-        // createProxyMiddleware('/api19', { 
-        //     target: 'https://v.api.aa1.cn',
+        // createProxyMiddleware('/api17', { 
+        //     target: '  https://api.oick.cn/',
         //     changeOrigin: true,
-        //     pathRewrite: {'^/api19': '' }
+        //     pathRewrite: {'^/api17': '' }
         // }),
+        createProxyMiddleware('/api20', { 
+            target: 'https://zj.v.api.aa1.cn',
+            changeOrigin: true,
+            pathRewrite: {'^/api20': '' }
+        }),
         
     )
 }

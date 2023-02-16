@@ -43,6 +43,16 @@ const babelRuntimeEntryHelpers = require.resolve(
 const babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator', {
   paths: [babelRuntimeEntry],
 });
+// 获取打包体积
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+ // gzip插件
+const CompressionPlugin = require("compression-webpack-plugin");
+// module.exports = {
+//     plugins: [new BundleAnalyzerPlugin()]
+// }
+
 
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
@@ -333,6 +343,7 @@ module.exports = function (webpackEnv) {
         ...(modules.webpackAliases || {}),
       },
       plugins: [
+
         // Prevents users from importing files from outside of src/ (or node_modules/).
         // This often causes confusion because we only process files within src/ with babel.
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
@@ -433,6 +444,7 @@ module.exports = function (webpackEnv) {
                 ],
                 
                 plugins: [
+
                   isEnvDevelopment &&
                     shouldUseReactRefresh &&
                     require.resolve('react-refresh/babel'),
@@ -575,7 +587,16 @@ module.exports = function (webpackEnv) {
       ].filter(Boolean),
     },
     plugins: [
+      // new BundleAnalyzerPlugin(),
       // Generates an `index.html` file with the <script> injected.
+      new CompressionPlugin({
+        filename: '[path][base].gz',
+        algorithm: 'gzip', // 算法       
+        test: new RegExp('\\.(js|css)$'), // 压缩 js 与 css
+        threshold: 10240, // 只处理比这个值大的资源。按字节计算
+        minRatio: 0.8 // 只有压缩率比这个值小的资源才会被处理
+      }),
+
       new HtmlWebpackPlugin(
         Object.assign(
           {},
@@ -673,6 +694,7 @@ module.exports = function (webpackEnv) {
         resourceRegExp: /^\.\/locale$/,
         contextRegExp: /moment$/,
       }),
+      // new BundleAnalyzerPlugin(),
       // Generate a service worker script that will precache, and keep up to date,
       // the HTML & assets that are part of the webpack build.
       isEnvProduction &&
