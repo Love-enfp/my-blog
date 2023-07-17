@@ -4,8 +4,8 @@ import axios from '../utils/request'
     路径地址
 */
 const base={
-    // baseUrl:"http://wjgblog.cn:3008",
-    baseUrl:"http://localhost:3008",
+    baseUrl:"http://wjgblog.cn:3008",
+    // baseUrl:"http://localhost:3008",
     articles:"/api/articles",
     articlesview:'/api/articlesview',
     labels:"/api/labels",

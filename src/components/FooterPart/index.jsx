@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 import {QqOutlined,HomeOutlined,WechatOutlined,WhatsAppOutlined} from '@ant-design/icons';
-
+import gongan from '../../assets/images/备案图标.png'
 // 引入qq和微信照片
 import QQ from '../../assets/images/qq.png'
 import Wechat from '../../assets/images/wechat.png'
@@ -55,7 +55,12 @@ export default function FooterPart() {
                 <h2>留言总数：29</h2>
             </li>
         </ul>
-        <p><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2023000367号</a></p>
+        <p className='gongan'>
+        <a style={{marginRight:'40px'}}  target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41010502005669" ><img src={gongan} />豫公网安备 41010502005669号</a>
+          <a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2023000367号</a>
+        </p>
+          
+
         <div>本站点已经开通：{result} (*๓´╰╯`๓)
 
         </div>

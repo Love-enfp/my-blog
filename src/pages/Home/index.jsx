@@ -9,7 +9,7 @@ import 'antd/dist/antd.min.css'
 import './index.scss'
 // 引入icon图形
 import { ArrowDownOutlined, ArrowUpOutlined, LikeOutlined } from '@ant-design/icons';
-import { Layout, Card, Image, BackTop, Pagination } from 'antd'
+import { Layout, Card, Image, BackTop, Pagination ,Spin  } from 'antd'
 import api from '../../api';
 // 引入轮播图
 import Slider from "react-slick";
@@ -41,23 +41,56 @@ export default function Home() {
   const [articleView, setArticleView] = useState([])
   // 存储页码
   const [page, setPage] = useState(1)
+  // 初始状态为加载中
+  const [loading, setLoading] = useState(true); 
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  //   console.log('请求了')
+  //   api.getArticles({ page }).then(res => {
+  //     if (res.data.status === 200) {
+  //       // 将所有的文章存到reudx中
+  //       dispatch(initCity(res.data.allArticles))
+  //       // 将分过页码的数据存储到state中
+  //       setArticleTime(res.data.result)
+  //     }
+  //   })
+  //   api.getArticlesView({ page }).then(res => {
+  //     if (res.data.status === 200) {
+  //       // 存储浏览量由高到低的文章
+  //       setArticleView(res.data.allNumByView)
+  //     }
+  //   })
+  //   setTimeout(() => {
+  //     setLoading(false); // 数据返回后将加载状态设置为 false
+  //   }, 2000);
+  // }, [page])//eslint-disable-line
   useEffect(() => {
-    window.scrollTo(0, 0);
-    api.getArticles({ page }).then(res => {
-      if (res.data.status === 200) {
-        // 将所有的文章存到reudx中
-        dispatch(initCity(res.data.allArticles))
-        // 将分过页码的数据存储到state中
-        setArticleTime(res.data.result)
+    const fetchData = async () => {
+      try {
+        window.scrollTo(0, 0);
+        console.log('请求了');
+  
+        const articlesResponse = await api.getArticles({ page });
+        if (articlesResponse.data.status === 200) {
+          dispatch(initCity(articlesResponse.data.allArticles));
+          setArticleTime(articlesResponse.data.result);
+        }
+  
+        const articlesViewResponse = await api.getArticlesView({ page });
+        if (articlesViewResponse.data.status === 200) {
+          setArticleView(articlesViewResponse.data.allNumByView);
+        }
+  
+        setLoading(false); // 数据返回后将加载状态设置为 false
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-    })
-    api.getArticlesView({ page }).then(res => {
-      if (res.data.status === 200) {
-        // 存储浏览量由高到低的文章
-        setArticleView(res.data.allNumByView)
-      }
-    })
-  }, [page])//eslint-disable-line
+    };
+  
+    fetchData();
+  }, [page]);
+  
 
   function changePage(page) {
     setPage(page)
@@ -141,9 +174,16 @@ export default function Home() {
 
           </div>
         </Header>
-
+        
         <div className="mainContent">
+         
           {/* 内容区域 */}
+          {
+           loading ? <Spin className='loading'  />
+           :
+           (
+
+          
           <Content id="components-anchor-demo-basic">
 
             <Card className='articleRecommend' style={{ width: 1200 }}>
@@ -187,6 +227,8 @@ export default function Home() {
               </div>
             </Card>
           </Content>
+            )
+          }
           {/* 底部区域 */}
          <FooterPart></FooterPart>
 

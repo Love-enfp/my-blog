@@ -424,6 +424,36 @@ module.exports = function (webpackEnv) {
                 and: [/\.(ts|tsx|js|jsx|md|mdx)$/],
               },
             },
+            // webpack配置，图片的压缩
+            //  {
+            // loader: 'file-loader',
+            // options: {
+            //   name: '[name].[hash:7].[ext]'
+            // },
+            // },
+            // {
+            //   loader: 'image-webpack-loader',
+            //   options: {
+            //     mozjpeg: {
+            //       progressive: true,
+            //       quality: 50,
+            //     },
+            //     optipng: {
+            //       enabled: true,
+            //     },
+            //     pngquant: {
+            //       quality: [0.5, 0.65],
+            //       speed: 4,
+            //     },
+            //     gifsicle: {
+            //       interlaced: false,
+            //     },
+            //     webp: { // 不支持WEBP就不要写这一项
+            //       quality: 75
+            //     },
+            //   },
+            // },
+
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
