@@ -69,7 +69,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         window.scrollTo(0, 0);
-        console.log('请求了');
+        console.log('请求了11111111111');
   
         const articlesResponse = await api.getArticles({ page });
         if (articlesResponse.data.status === 200) {
